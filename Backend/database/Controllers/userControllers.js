@@ -4,6 +4,22 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const {sqlConfig} = require("../config/dbconfig");
 
+
+const getAllUsers = async (req, res) => {
+
+    try {
+        const pool = await mssql.connect(sqlConfig)
+        const users =  (await pool.request().execute("getAllUsersProcedure")).recordset
+        return res.status(200).json({
+            users: users
+        })
+    } catch (e) {
+        console.log(e.message)
+        return res.status(404).json({
+            Error: e
+        })
+    }
+}
 const registerUser = async (req, res) => {
 
     try {
@@ -16,9 +32,8 @@ const registerUser = async (req, res) => {
             .input('Username', mssql.VarChar, Username)
             .input('Email', mssql.VarChar, Email)
             .input('Password', mssql.VarChar, hashedPassword)
-            .input("isAdmin", mssql.Bit, 1)
+            .input("isAdmin", mssql.Bit, 0)
             .execute('registerUsersProcedure')
-
 
         if (result.rowsAffected > 0) {
             return res.status(200).json({
@@ -35,5 +50,6 @@ const registerUser = async (req, res) => {
 
 }
 module.exports = {
-    registerUser
+    registerUser,
+    getAllUsers
 }
