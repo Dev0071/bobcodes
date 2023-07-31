@@ -1,7 +1,7 @@
 CREATE TABLE Users (
-                       userId NVARCHAR(200),
-                       userName NVARCHAR(200),
-                       email NVARCHAR(200),
-                       password NVARCHAR(500),
-                       isAdmin BIT
+    UserID INT PRIMARY KEY,
+    Username NVARCHAR(50) NOT NULL,
+    Email NVARCHAR(100) NOT NULL,
+    Password NVARCHAR(100) NOT NULL,
+    isAdmin BIT DEFAULT 0
 );
