@@ -10,6 +10,15 @@
 <button id="logout-button">Logout</button>
 
 <script>
+
+    if(window.location.pathname == '/Backend/database/html%20files/dashboard.html')
+    {
+        let token = localStorage.getItem('authToken')
+        if(!token){
+            window.location.href = "login.html";
+        }
+    }
+
     document.addEventListener("DOMContentLoaded", () => {
         const token = localStorage.getItem("authToken");
         const welcomeMessage = document.getElementById("welcome-message");
@@ -34,7 +43,7 @@
             localStorage.removeItem("authToken");
 
             // Redirect the user back to the login page
-            window.location.href = "/login.html"; // Replace "/login" with the URL of your login page
+            window.location.href = "login.html"; // Replace "/login" with the URL of your login page
         });
 
         // Helper function to parse the JWT token payload
