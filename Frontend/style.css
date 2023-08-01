@@ -1,0 +1,121 @@
+:root{
+    --orange: rgb(241, 116, 0);
+    --blue: rgb(5,73,144);
+    --grey: rgb(199,212,228);
+    --white: rgb(220,226,238);
+}
+*{
+    padding: 0;
+    margin: 0;
+}
+body{
+    height: 100vh;
+    /* background-image: url(GeometricBg.jpeg); */
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.container{
+    box-shadow: darkgrey;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 80%;
+    height: 80vh;
+    margin: auto;
+    border-radius: 10px;
+    gap: 10px;
+}
+.mini-nav{
+    display: flex;
+    flex-direction: column;
+    width: 2%;
+    margin-left: 4px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.mini-nav ul{
+    cursor: pointer;
+    list-style: none;
+}
+.mini-nav:hover ul li{
+    color: antiquewhite;
+}
+nav{
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: space-evenly;
+    height: 100%;
+    background-color: var(--grey);
+    width: 14%;
+
+}
+nav ul{
+    list-style: none;
+    padding: 20px;
+}
+nav ul li:hover{
+    color: white;
+    cursor: pointer;
+}
+.user{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas: "usernav usernav"
+    "recentprojects recentprojects"
+    "recentprojects recentprojects"
+    "reminder reminder";
+    width: 41%;
+    gap: 10px;
+    /* background-color: aqua; */
+    padding: 10px;
+}
+.user-nav{
+    /* background-color: blue; */
+    grid-area: usernav;
+}
+.recent-projects{
+    /* background-color: chartreuse; */
+    grid-area: recentprojects;
+}
+.reminder{
+    /* background-color: brown; */
+    grid-area: reminder;
+}
+.logincard{
+
+    text-align: center;   
+}
+#btn{
+    width: 8vw;
+    height: 4vh;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+#btn:hover{
+    background-color: var(--blue);
+    color: white;
+}
+.signup form{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    padding: 20px;  
+    background-color: aqua;
+}
+.logincard, .signup{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--orange);
+    width: 40vw;
+    height: 34vh;
+    border-radius: 5px;
+}
+
+@media screen and (max-width: 620px ){
+    .logincard, .logincard button{
+        font-size: 10px;
+    }
+}
