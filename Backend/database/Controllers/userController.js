@@ -72,7 +72,7 @@ const loginUser = async (req, res) => {
         const user = (
             await pool
                 .request()
-                .input("Email", mssql.NVarChar, Email)
+                .input("Email", Email)
                 .execute("userLoginProcedure")
         ).recordset[0];
 
@@ -84,7 +84,12 @@ const loginUser = async (req, res) => {
             if (passwordMatch) {
                 /*  We get everything that was inside the user object, do away with the password and return the payload.
                 * The payload has the rest of the things such as the name and email, role etc */
-                const {Password, ...payload} = user
+
+                const payload = {
+                    UserID: user.UserID,
+                    Username: user.Username,
+                    Role: user.isAdmin === 1 ? "admin" : "user" // Assuming isAdmin is an INT field with values 0 or 1
+                };
 
                 const token = jwt.sign(payload, process.env.SECRET, {expiresIn : '36000'})
 

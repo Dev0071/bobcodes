@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+<h1 id="welcome-message">Welcome</h1>
+<button id="logout-button">Logout</button>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("authToken");
+        const welcomeMessage = document.getElementById("welcome-message");
+        const logoutButton = document.getElementById("logout-button");
+
+        if (token) {
+            const decodedToken = parseJwt(token);
+
+            if (decodedToken) {
+                if (decodedToken.Role === "admin") {
+                    welcomeMessage.textContent = "Welcome Admin";
+                    // Admin-specific logic here...
+                } else {
+                    welcomeMessage.textContent = "Welcome " + decodedToken.Username;
+                    // User-specific logic here...
+                }
+            }
+        }
+
+        logoutButton.addEventListener("click", () => {
+            // Clear the token from localStorage
+            localStorage.removeItem("authToken");
+
+            // Redirect the user back to the login page
+            window.location.href = "/login.html"; // Replace "/login" with the URL of your login page
+        });
+
+        // Helper function to parse the JWT token payload
+        function parseJwt(token) {
+            try {
+                const base64Url = token.split(".")[1];
+                const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+                const payload = decodeURIComponent(atob(base64).split("").map((c) => {
+                    return "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2);
+                }).join(""));
+
+                return JSON.parse(payload);
+            } catch (error) {
+                console.error("Error parsing JWT token:", error);
+                return null;
+            }
+        }
+    });
+</script>
+</body>
+</html>
