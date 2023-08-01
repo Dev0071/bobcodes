@@ -1,8 +1,12 @@
-CREATE TABLE Projects (
-    ProjectID NVARCHAR(200) PRIMARY KEY,
-    Name NVARCHAR(100) NOT NULL,
+CREATE TABLE Projects
+(
+
+    ProjectID   UNIQUEIDENTIFIER PRIMARY KEY,
+
+    Name        NVARCHAR(255) NOT NULL,
+
     Description NVARCHAR(MAX),
-    EndDate DATE
+
+    EndDate     DATE
+
 );
-
-
