@@ -3,7 +3,6 @@ const mssql = require('mssql')
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcrypt')
 const {sqlConfig} = require("../config/dbconfig");
-const {pool} = require("mssql/lib/global-connection");
 const dotenv = require('dotenv');
 
 dotenv.config();
@@ -42,7 +41,7 @@ const registerUser = async (req, res) => {
             });
         }
 
-        // Proceed with user registration if the email is not already registered
+        // Continue with user registration if the email is not already registered
         const result = await pool.request()
             .input("UserID", mssql.NVarChar, id)
             .input("Username", mssql.NVarChar, Username)
@@ -82,13 +81,10 @@ const loginUser = async (req, res) => {
             const passwordMatch = await bcrypt.compare(Password, hashedPassword);
 
             if (passwordMatch) {
-                /*  We get everything that was inside the user object, do away with the password and return the payload.
-                * The payload has the rest of the things such as the name and email, role etc */
-
                 const payload = {
                     UserID: user.UserID,
                     Username: user.Username,
-                    Role: user.isAdmin === 1 ? "admin" : "user" // Assuming isAdmin is an INT field with values 0 or 1
+                    Role: user.isAdmin === 1 ? "admin" : "user"
                 };
 
                 const token = jwt.sign(payload, process.env.SECRET, {expiresIn : '36000'})
