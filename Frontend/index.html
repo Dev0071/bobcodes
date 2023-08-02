@@ -14,35 +14,19 @@
 <body>
     <div class="container">
         <nav>
-            <label class="menu">
-                <input type="checkbox">
-            </label>
-            <aside class="sidebar">
-                <nav>
-                  <div><span class="material-symbols-outlined">menu</span>
-                    <span>Home</span></div>
-                  <div><span class="material-symbols-outlined">person</span>
-                    <span>Contact</span></div>
-                  <div><span class="material-symbols-outlined">help</span>
-                    <span>Help</span></div>
-                </nav>
-              </aside>
-
-            <!-- <div class="nav-options">
-                <ul>
-                    <li> 
-                    </li>
-                    <li> 
-                    </li>
-                    <li> 
-                    </li>                           
-                </ul>
-            </div> -->
+            <ul>
+                <li><span class="material-symbols-outlined">menu</span>
+                <span>Home</span></li>
+                <li><span class="material-symbols-outlined">person</span>
+                <span>Contact</span></li>
+                <li><span class="material-symbols-outlined">help</span>
+                <span style="cursor: help;">Help</span></li>
+            </ul>
         </nav>
         <section class="user">
             <div class="user-nav">
                 <p>Today,<span id="date-time"></span></p>
-                <input type="text" placeholder="Searching for..." style="width: 100%; border-radius: 10px;">
+                <input type="text" placeholder="Searching for..." style="width: 90%; border-radius: 5px; padding: 3px; margin-top: 10px;">
             </div>
             <div class="recent-projects">
                 <p>Recent projects</p>
@@ -51,17 +35,30 @@
                 <p>Reminders</p>
             </div>
         </section>
+        <hr>
         <section class="admin">
+            <div class="log-out">
+                <span id="not-icon" class="material-symbols-outlined">notifications</span>
+                <span id="out-icon" class="material-symbols-outlined">logout</span>
+            </div>
             <div class="admin-nav">
-                <button id="add-project">Add project</button>
+                <div id="addproject">
+                    <span id="add" style="font-size: 40px;" class="material-symbols-outlined">playlist_add</span>
+                    <p>Add <br> project</p>
+                </div>
+                <hr>
+                <div id="acc-icon">
+                    <span style="font-size: 30px; padding-right: 10px;" class="material-symbols-outlined">account_circle</span>
+                </div>
             </div>
             <div class="team">
+                <p>Team members</p>
                 <!-- Team members added dynamically -->
             </div>
             <div class="tasks">
-                <p>Project time</p>
-                <p>Ongoing project</p>
-                <p>Completed projects</p>
+                <div class="project-time"><p>Project <br> time</p></div><hr>
+                <div class="ongoing-prject"><p>Ongoing <br> project</p></div><hr>
+                <div class="completed-projects"><p>Completed <br> projects</p></div>
             </div>
         </section>
     </div>
