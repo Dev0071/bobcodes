@@ -12,9 +12,15 @@ const getAllUsers = async (req, res) => {
     try {
         const pool = await mssql.connect(sqlConfig)
         const users = (await pool.request().execute("getAllUsersProcedure")).recordset
-        return res.status(200).json({
-            users: users
-        })
+        if (users.length === 0) {
+            return res.status(200).json({
+                message: "There no users in the database"
+            })
+        } else {
+            return res.status(200).json({
+                users: users
+            })
+        }
     } catch (e) {
         console.log(e.message)
         return res.status(404).json({
@@ -25,29 +31,17 @@ const getAllUsers = async (req, res) => {
 const registerUser = async (req, res) => {
     try {
         const id = v4();
-        const {Username, Email, Password} = req.body;
+        const { Username, Email, Password, isAdmin } = req.body; // Use provided isAdmin value
         const hashedPassword = await bcrypt.hash(Password, 5);
         const pool = await mssql.connect(sqlConfig);
 
-        // Check if the email is already registered in the database
-        const existingUser = await pool
+        const result = await pool
             .request()
-            .input("Email", mssql.NVarChar, Email)
-            .query("SELECT TOP 1     Email FROM Users WHERE Email = @Email");
-
-        if (existingUser.recordset.length > 0) {
-            return res.status(400).json({
-                error: "Email is already registered.",
-            });
-        }
-
-        // Continue with user registration if the email is not already registered
-        const result = await pool.request()
             .input("UserID", mssql.NVarChar, id)
             .input("Username", mssql.NVarChar, Username)
             .input("Email", mssql.NVarChar, Email)
             .input("Password", mssql.NVarChar, hashedPassword)
-            .input("isAdmin", mssql.Bit, 0)
+            .input("isAdmin", mssql.Bit, isAdmin) // Use provided isAdmin value
             .execute("registerUsersProcedure");
 
         if (result.rowsAffected > 0) {
@@ -58,10 +52,12 @@ const registerUser = async (req, res) => {
     } catch (e) {
         console.log(e.message);
         return res.status(500).json({
-            error: "Internal server error",
+            error: e.message,
         });
     }
 };
+
+
 
 const loginUser = async (req, res) => {
     try {
@@ -87,7 +83,7 @@ const loginUser = async (req, res) => {
                     Role: user.isAdmin === 1 ? "admin" : "user"
                 };
 
-                const token = jwt.sign(payload, process.env.SECRET, {expiresIn : '36000'})
+                const token = jwt.sign(payload, process.env.SECRET, {expiresIn: '36000'})
 
                 return res.status(200).json({
                     message: "Login was successful",

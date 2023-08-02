@@ -17,6 +17,3 @@ CREATE TABLE UserProjects
 
 );
 
-
-
- 
