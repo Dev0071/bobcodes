@@ -3,60 +3,78 @@
     --blue: rgb(5,73,144);
     --grey: rgb(199,212,228);
     --white: rgb(220,226,238);
+    --orange2: rgb(238,122,59);
 }
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Mono&display=swap');
 *{
     padding: 0;
     margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto Mono', monospace;
 }
 body{
     height: 100vh;
-    /* background-image: url(GeometricBg.jpeg); */
     background-size: cover;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto Mono', monospace;
 }
 .container{
     box-shadow: darkgrey;
     display: flex;
     background-color: rgb(255, 255, 255);
-    width: 80%;
-    height: 80vh;
+    width: 90%;
+    height: 70vh;
     margin: auto;
     border-radius: 10px;
     gap: 10px;
+    box-shadow: 5px 4px rgba(5,73,144, 0.4);
 }
-.mini-nav{
+/* .mini-nav{
     display: flex;
     flex-direction: column;
     width: 2%;
     margin-left: 4px;
     align-items: center;
     justify-content: space-evenly;
-}
+} 
 .mini-nav ul{
     cursor: pointer;
     list-style: none;
 }
 .mini-nav:hover ul li{
     color: antiquewhite;
-}
+} */
 nav{
     display: flex;
     flex-direction: column;
-    /* align-items: center; */
-    justify-content: space-evenly;
-    height: 100%;
-    background-color: var(--grey);
+    background-color: white;
     width: 14%;
 
+}
+.logo{
+    display: flex;
+    justify-content: flex-start;
 }
 nav ul{
     list-style: none;
     padding: 20px;
 }
+nav li {
+    display: grid;
+    grid-template-columns: 1rem 1fr;
+
+}
+nav li span{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
 nav ul li:hover{
-    color: white;
+    color: var(--orange);
     cursor: pointer;
 }
 .user{
@@ -84,26 +102,20 @@ nav ul li:hover{
     /* background-color: brown; */
     grid-area: reminder;
 }
-.logincard{
-
-    text-align: center;   
-}
-#btn{
+/* .logincard{
+    display: flex;
+    justify-content: space-evenly;
+    text-align: center;  
+} */
+.btn{
     width: 8vw;
     height: 4vh;
     border-radius: 5px;
     margin-bottom: 15px;
 }
-#btn:hover{
+.btn:hover{
     background-color: var(--blue);
     color: white;
-}
-.signup form{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-evenly;
-    padding: 20px;  
-    background-color: aqua;
 }
 .logincard, .signup{
     display: flex;
@@ -112,6 +124,31 @@ nav ul li:hover{
     width: 40vw;
     height: 34vh;
     border-radius: 5px;
+    justify-content: space-evenly;
+}
+.login{
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+form input{
+    width: 50%;
+    padding: 5px;
+    border-radius: 5px;
+}
+.newuser, #btn{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.link:active, .link:hover{
+    color: white;
+}
+#date-time p{
+    font-weight: 400;
 }
 
 @media screen and (max-width: 620px ){
