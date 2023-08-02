@@ -1,6 +1,5 @@
 CREATE TABLE UserProjects
 (
-
     UserProjectID UNIQUEIDENTIFIER PRIMARY KEY,
 
     UserID        NVARCHAR(255)    NOT NULL,

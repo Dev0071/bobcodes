@@ -16,5 +16,5 @@ ALTER TABLE Projects
 
     ADD IsComplete BIT NOT NULL DEFAULT 0;
 
-use groupWork;
+
 

@@ -1,17 +1,28 @@
+
+const { connectToPool } = require('./database/config/dbconfig.js');
 const express = require('express');
+const dotenv = require('dotenv');
+
+const app = express();
 const cors = require('cors');
-const app = express()
-app.use(express.json())
-const {usersRouter} = require("./database/Routes/usersRouter");
-const {projectRouter} = require("./database/Routes/projectRouter");
+const corsOptions = {
+    origin: '*',
+    optionsSuccessStatus: 200,
+};
+app.use(express.json());
+app.use(cors(corsOptions));
 
-app.use(cors());
-app.listen(9500, () => {
-	console.log("App running on server 9500");
-})
+const {adminRoute} = require("./database/Routes/adminRoutes/adminRoute");
+const {usersRouter} = require("./database/Routes/usersRouter/usersRouter");
+dotenv.config();
 
-app.use("/users", usersRouter)
-app.use("/projects", projectRouter)
-app.use((err, req, res, next) =>{
-res.json({Error: err})
+const port = 9500;
+
+
+app.use('/users', usersRouter);
+app.use('/api/admin', adminRoute);
+connectToPool().then(() => {
+    app.listen(port, () => {
+        console.log(`server started on port ${port}`);
+    });
 });
