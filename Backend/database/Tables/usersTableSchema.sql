@@ -1,3 +1,4 @@
+<
 CREATE TABLE Users (
     UserID NVARCHAR(255) PRIMARY KEY,
     Username NVARCHAR(255) NOT NULL,
@@ -5,4 +6,5 @@ CREATE TABLE Users (
     Password NVARCHAR(500) NOT NULL,
     isAdmin BIT DEFAULT 0
 );
+
 

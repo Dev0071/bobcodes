@@ -1,4 +1,5 @@
 
+
 -- SELECT * FROM Projects
 
 CREATE TABLE Projects (
@@ -14,3 +15,4 @@ CREATE TABLE Projects (
 -- SELECT * FROM Projects WHERE Name = "js"
 ALTER TABLE Projects
 ADD IsComplete BIT NOT NULL DEFAULT 0;
+

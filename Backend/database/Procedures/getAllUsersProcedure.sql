@@ -1,0 +1,5 @@
+CREATE OR ALTER PROCEDURE getAllUsersProcedure
+AS
+BEGIN SELECT * FROM Users
+END;
+
