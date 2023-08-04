@@ -24,9 +24,15 @@
             </ul>
         </nav>
         <section class="user">
-            <div class="user-nav">
-                <p>Today,<span id="date-time"></span></p>
-                <input type="text" placeholder="Searching for..." style="width: 90%; border-radius: 5px; padding: 3px; margin-top: 10px;">
+            <div class="user-nav" >
+                <div class="today" style="width: 45%; justify-content: flex-start;">
+                    <p>Today,<span id="date-time"></span></p>
+                    <input type="text" placeholder="Searching for..." style="width: 90%; border-radius: 5px; padding: 3px; margin-top: 10px;">
+                </div>
+                <div class="logouticon">
+                    <span id="out-icon" class="material-symbols-outlined">logout</span><br>
+                    <span id="acc-icon"  class="material-symbols-outlined">account_circle</span>
+                </div>
             </div>
             <div class="recent-projects">
                 <p>Recent projects</p>
@@ -35,8 +41,7 @@
                 <p>Reminders</p>
             </div>
         </section>
-        <hr>
-        <section class="admin">
+        <!-- <section class="admin">
             <div class="log-out">
                 <span id="not-icon" class="material-symbols-outlined">notifications</span>
                 <span id="out-icon" class="material-symbols-outlined">logout</span>
@@ -56,11 +61,11 @@
                 Team members added dynamically
             </div>
             <div class="tasks">
-                <div class="project-time"><p>Project <br> time</p></div><hr>
-                <div class="ongoing-prject"><p>Ongoing <br> project</p></div><hr>
+                <div class="project-time"><p>Assigned <br> projects</p></div><hr>
+                <div class="ongoing-prject"><p>Unassigned <br> projects</p></div><hr>
                 <div class="completed-projects"><p>Completed <br> projects</p></div>
             </div>
-        </section>
+        </section> -->
     </div>
 </body>
 </html>

@@ -27,7 +27,7 @@ body{
     display: flex;
     background-color: rgb(255, 255, 255);
     width: 90%;
-    height: 70vh;
+    height: 90vh;
     margin: auto;
     border-radius: 10px;
     gap: 10px;
@@ -63,7 +63,7 @@ nav ul li:hover{
     "recentprojects recentprojects"
     "recentprojects recentprojects"
     "reminder reminder";
-    width: 45%;
+    width: 90%;
     gap: 10px;
     /* background-color: aqua; */
     padding: 10px;
@@ -71,6 +71,8 @@ nav ul li:hover{
 .user-nav{
     /* background-color: blue; */
     grid-area: usernav;
+    display: flex;
+    justify-content: space-between;
 }
 .recent-projects{
     /* background-color: chartreuse; */
@@ -124,22 +126,25 @@ form input{
     text-align: center;
     justify-content: space-evenly;
 }
-.recent-projects:hover, .reminder:hover, .user-nav:hover{
+.recent-projects:hover, .reminder:hover, .today:hover{
     background-color: var(--orange2);
     color: var(--blue);
-    margin: 0 5px;
-    padding: 2px;
     border-radius: 5px;
-    font-size: 22px;
+    font-size: 25px;
     height: 100%;
     width: 100%;
+}
+.logouticon span{
+    display:flex; 
+    width: 45%;
+    justify-content: flex-end;
 }
 .admin{
     /* background-color: chartreuse; */
     display: flex;
     flex-direction: column;
     height: 100;
-    width: 45%;
+    width: 90%;
     gap: 10px;
 }
 .log-out{
@@ -201,7 +206,7 @@ form input{
     font-size: 12px;
     padding-top: 5px;
 }
-.team:hover, .log-out:hover, .admin-nav:hover, .project-time:hover, .ongoing-prject:hover, .completed-projects:hover{
+.team:hover, .project-time:hover, .ongoing-prject:hover, .completed-projects:hover{
     background-color: var(--grey);
     border-radius: 5px;
     margin: 5px 5px 5px;
