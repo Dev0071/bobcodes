@@ -104,7 +104,7 @@ nav ul li:hover{
     flex-direction: column;
     background-color: var(--orange);
     width: 40vw;
-    height: 34vh;
+    height: 45vh;
     border-radius: 5px;
     justify-content: space-evenly;
 }

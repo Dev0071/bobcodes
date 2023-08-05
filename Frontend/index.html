@@ -3,9 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <title>G2 Creations</title>
+    <style>
+        body {background-color: rgb(199,212,228);
+            font-family: "Monaco";}
+        </style>
 </head>
 <body>
-    .
+    <div class="container">
+        <nav>
+            
+            <ul>
+                <li><span class="material-symbols-outlined">menu</span>
+                <span>Home</span></li>
+                <li><span class="material-symbols-outlined">person</span>
+                <span>Contact</span></li>
+                <li><span class="material-symbols-outlined">help</span>
+                <span style="cursor: help;">Help</span></li>
+            </ul>
+
+            <div class="logut-div">
+                <li><span class="material-symbols-outlined" onclick="logout()" >logout</span></li>
+                <span>Logout</span>
+            </div>
+        </nav>
+        <section class="user">
+            <div class="user-nav" >
+                <div class="today" style="width: 45%; justify-content: flex-start;">
+                    <p>Today,<span id="date-time"></span></p>
+                    <input type="text" placeholder="Searching for..." style="width: 90%; border-radius: 5px; padding: 3px; margin-top: 10px;">
+                </div>
+                <div class="logouticon">
+                    <span id="acc-icon"  class="material-symbols-outlined">account_circle </span>
+                    <p>Hello, User</p>
+                </div>
+            </div>
+            <div class="recent-projects">
+                <p>Recent projects</p>
+            </div>
+            <div class="reminder">
+                <p>Reminders</p>
+                <p id="greeting"></p>
+            </div>
+        </section> 
+       <section style="display: none;" class="admin">
+            <div class="log-out">
+                <span id="not-icon" class="material-symbols-outlined">notifications</span>
+                <span id="out-icon" class="material-symbols-outlined">logout</span>
+            </div>
+            <div class="admin-nav">
+                <div id="addproject">
+                    <span id="add" style="font-size: 40px;" class="material-symbols-outlined">playlist_add</span>
+                    <p>Add <br> project</p>
+                </div>
+                <hr>
+                <div id="acc-icon">
+                    <span style="font-size: 30px; padding-right: 10px;" class="material-symbols-outlined">account_circle</span>
+                </div>
+            </div>
+            <div class="team">
+                <p>Team members</p>
+                Team members added dynamically
+            </div>
+            <div class="tasks">
+                <div class="project-time"><p>Assigned <br> projects</p></div><hr>
+                <div class="ongoing-prject"><p>Unassigned <br> projects</p></div><hr>
+                <div class="completed-projects"><p>Completed <br> projects</p></div>
+            </div>
+        </section>
+    </div>
+
+    <script src="/Frontend/dashboard.js"></script>
 </body>
 </html>
