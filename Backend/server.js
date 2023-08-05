@@ -12,7 +12,7 @@ const corsOptions = {
 };
 const port = process.env.PORT || 500;
 app.use(express.json());
-
+app.use(cors())
 app.use('/users', usersRouter);
 app.use('/api/admin', adminRoute);
 connectToPool().then(() => {

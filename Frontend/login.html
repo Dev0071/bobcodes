@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Log in</title>
+    <style>
+        body {
+            background-image: url(GeometricBg2.jpeg);
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center center;
+        }
+
+        @media (max-width: 768px) {
+
+            /* Adjust the background-size for smaller screens */
+            body {
+                background-size: contain;
+
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="logincard">
+        <form class="login" id="login-form">
+            <input type="email" id="email" required placeholder="Enter your email address">
+            <input type="password" id="password" required placeholder="Password">
+            <button style="align-items: center;" type="submit" class="btn">Log in</button>
+            <div style=" text-align: center; color: crimson;" id="error-message"></div>
+            <span>
+                <p style="margin-top: 10%; color: white;">New user? Register below</p>
+            </span>
+            <button style="align-items: center;" class="btn">Sign up</button>
+        </form>
+    </div>
+
+    <script src="/Frontend/login.js"></script>
+</body>
+
+</html>
