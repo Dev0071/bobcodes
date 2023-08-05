@@ -4,3 +4,4 @@ AS
 BEGIN
     SELECT * FROM Projects WHERE Name = @Name;
 END
+        

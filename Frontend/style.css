@@ -1,0 +1,240 @@
+:root{
+    --orange: rgb(241, 116, 0);
+    --blue: rgb(5,73,144);
+    --grey: rgb(199,212,228);
+    --white: rgb(220,226,238);
+    --orange2: rgb(250, 188, 154);
+}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Mono&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+    font-weight: bold;
+}
+body{
+    height: 100vh;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Open Sans', sans-serif;
+    font-family: 'Roboto Mono', monospace;
+}
+.container{
+    box-shadow: darkgrey;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+    width: 90%;
+    height: 90vh;
+    margin: auto;
+    border-radius: 10px;
+    gap: 10px;
+    box-shadow: 5px 4px rgba(5,73,144, 0.4);
+    z-index: 0;
+}
+nav{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: var(--orange);
+    width: 10%;
+    font-size: 18px;
+    border-radius: 5px;
+}
+nav ul{
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin-left: 2%;
+}
+nav ul li:hover{
+    color: white;
+    cursor: pointer;
+    /* box-shadow: 1px 1px 1px 1px var(--blue); */
+    outline: 2px solid var(--blue);
+}
+.user{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas: "usernav usernav"
+    "recentprojects recentprojects"
+    "recentprojects recentprojects"
+    "reminder reminder";
+    width: 90%;
+    gap: 10px;
+    /* background-color: aqua; */
+    padding: 10px;
+}
+.user-nav{
+    /* background-color: blue; */
+    grid-area: usernav;
+    display: flex;
+    justify-content: space-between;
+}
+.recent-projects{
+    /* background-color: chartreuse; */
+    grid-area: recentprojects;   
+}
+.recent-projects span{
+    /* background-color: chartreuse; */
+    display: flex;   
+    flex-direction: row;
+    justify-content: space-between;
+    padding-right: 10%;
+}
+.reminder{
+    /* background-color: brown; */
+    grid-area: reminder;
+}
+.btn{
+    width: 8vw;
+    height: 4vh;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+.btn:hover{
+    background-color: var(--blue);
+    color: white;    
+}
+.logincard, .signup{
+    display: flex;
+    flex-direction: column;
+    background-color: var(--orange);
+    width: 40vw;
+    height: 34vh;
+    border-radius: 5px;
+    justify-content: space-evenly;
+}
+.login{
+    justify-content: space-evenly;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+form input{
+    width: 50%;
+    padding: 5px;
+    border-radius: 5px;
+}
+.newuser, #btn{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-evenly;
+}
+.recent-projects:hover, .reminder:hover, .today:hover{
+    background-color: var(--orange2);
+    color: var(--blue);
+    border-radius: 5px;
+    font-size: 25px;
+    height: 100%;
+    width: 100%;
+}
+.logouticon span{
+    display:flex; 
+    width: 45%;
+    justify-content: flex-end;
+}
+.admin{
+    /* background-color: chartreuse; */
+    display: flex;
+    flex-direction: column;
+    height: 100;
+    width: 90%;
+    gap: 10px;
+}
+.log-out{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-right: 10px;
+    color: var(--orange);
+    height: 10%;
+    /* background-color: blue; */
+}
+
+.admin-nav{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-radius: 5px;
+    height: 10%;
+    /* background-color: yellow; */
+}
+#addproject{
+    display: flex;
+}
+#not-icon, #out-icon, #acc-icon, #add{
+    color: var(--orange);
+}
+#not-icon:hover, #out-icon:hover, #acc-icon:hover, #add:hover{
+    color: var(--blue);
+    cursor: pointer;
+}
+.team{
+    /* background-color: black; */
+    height: 55%;
+    z-index: 1;
+}
+.tasks{
+    /* background-color: brown; */
+    height: 25%;
+    display: flex;
+    gap: 5px;
+}
+.project-time, .ongoing-prject, .completed-projects{
+    display: flex;
+    justify-content: center;
+    width: 33%;
+}
+#add-project{
+    background-color: var(--orange);  
+    color: white; 
+    cursor: pointer;
+    padding: 10px;
+}
+#add-project:hover{
+    background-color: var(--blue);  
+    color: white; 
+    cursor: pointer;
+}
+#addproject p{
+    font-size: 12px;
+    padding-top: 5px;
+}
+.team:hover, .project-time:hover, .ongoing-prject:hover, .completed-projects:hover{
+    background-color: var(--grey);
+    border-radius: 5px;
+    margin: 5px 5px 5px;
+    padding: 5px;
+    color: white;
+    font-size: 22px;
+}
+
+@media screen and (max-width: 1120px){
+    *{
+        font-size:0.9rem ;
+    }
+}
+@media screen and (max-width: 920px){
+    *{
+        font-size:0.7rem ;
+    }
+}
+@media screen and (max-width: 620px ){
+    *{
+        font-size: 0.6rem;
+    }
+}
+@media screen and (max-width: 500px){
+    *, .material-symbols-outlined{
+        font-size:0.4rem;
+}
+    #addproject p{
+        font-size: 0.9rem;
+    }
+}
