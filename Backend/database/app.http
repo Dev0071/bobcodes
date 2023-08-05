@@ -1,0 +1,28 @@
+POST http://localhost:9500/users/register
+Content-Type: application/json
+
+{
+  "Username": "Admin",
+  "Email": "mathengdse@mail.com",
+  "Password": "Garfield",
+  "isAdmin": 1
+}
+
+###
+GET http://localhost:9500/users/all-users
+
+
+###
+POST  http://localhost:9500/users/login
+Content-Type: application/json
+
+{
+  "Email": "mathengdse@mail.com",
+  "Password": "Garfield"
+}
+
+###
+GET http://localhost:9500/api/admin/projects
+
+### POST http
+POST  http://localhost:9500/users/projects/mark-complete/94CC4CC0-2EBB-4B79-936B-45234AFFCE00

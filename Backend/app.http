@@ -1,0 +1,69 @@
+POST http://localhost:9500/users/register
+Content-Type: application/json
+
+{
+  "Username": "John Doe",
+  "Email": "john@doe.com",
+  "Password": "123456789",
+  "isAdmin": 1
+}
+
+###
+GET http://localhost:9500/users/all-users
+
+
+###
+POST  http://localhost:9500/users/login
+Content-Type: application/json
+
+{
+  "Email": "mathengdse@mail.com",
+  "Password": "Garfield"
+}
+
+###
+GET http://localhost:9500/api/admin/projects/
+
+###
+#const adminRoute = express.Router();
+#adminRoute.post('/assign', assignProject);
+#adminRoute.post('/create/project', createProject);
+#adminRoute.get('/projects', getAllProjects);
+#adminRoute.delete('/project/:ProjectName', deleteProject);
+#adminRoute.patch('/project/mark-complete/:ProjectID', updateProjectStatus);
+
+POST http://localhost:9500/api/admin/create/project
+Content-Type: application/json
+
+{
+  "Name": "Project 5",
+  "Description": "Project 5's description",
+  "EndDate": "2023-12-01"
+}
+###
+
+### fetch projects assigned to one user
+GET http://localhost:9500/users/projects/user/2ed1c3a7-a31c-441f-949f-622920ede14b
+
+###
+GET http://localhost:9500/api/admin/projects
+
+###
+POST  http://localhost:9500/api/admin/assign/
+Content-Type: application/json
+
+{
+  "UserID": "2ed1c3a7-a31c-441f-949f-622920ede14b",
+  "ProjectID": "94CC4CC0-2EBB-4B79-936B-45234AFFCE00",
+  "Username": "Jane Doe",
+  "ProjectName": "Project 2"
+}
+
+###
+DELETE  http://localhost:9500/api/admin/project/Project 2
+### MArk project complete
+POST http://localhost:9500/users/projects/mark-complete/19FAC2CD-7385-4B54-B5EE-F1A8ACD70D50
+
+
+### GET a single user
+GET http://localhost:9500/users/user/2f83a9a8-ad18-4a3c-8739-a1bfa5b0a36b
