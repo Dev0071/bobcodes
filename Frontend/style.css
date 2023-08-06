@@ -55,6 +55,13 @@ nav ul li:hover{
     /* box-shadow: 1px 1px 1px 1px var(--blue); */
     outline: 2px solid var(--blue);
 }
+#out-icon:hover{
+    color: white;
+    cursor: pointer;
+    box-shadow: 1px 1px 1px 1px var(--blue);
+    width: 50%;
+    margin: 0 auto;
+}
 .user{
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -168,10 +175,10 @@ form input{
 #addproject{
     display: flex;
 }
-#not-icon, #out-icon, #acc-icon, #add{
+#not-icon, #acc-icon, #add{
     color: var(--orange);
 }
-#not-icon:hover, #out-icon:hover, #acc-icon:hover, #add:hover{
+#not-icon:hover, #acc-icon:hover, #add:hover{
     color: var(--blue);
     cursor: pointer;
 }
