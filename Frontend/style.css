@@ -277,29 +277,47 @@ form input {
   * {
     font-size: 0.9rem;
   }
-}
-
-@media screen and (max-width: 920px) {
-  * {
-    font-size: 0.7rem;
+  body {
+    background-image: contain;
   }
 }
 
-@media screen and (max-width: 620px) {
+@media screen and (max-width: 772px) {
   * {
-    font-size: 0.6rem;
+    font-size: 0.9rem;
+  }
+  body {
+    background-image: none;
+    background-color: var(--white);
+  }
+  .logincard{
+    box-shadow: 5px 4px rgba(5, 73, 144, 0.4);
   }
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
+  * {
+    font-size: 0.8rem;
+  }
+  .logincard{
+    box-shadow: 5px 4px rgba(5, 73, 144, 0.4);
+  }
+}
+
+@media screen and (max-width: 540px) {
 
   *,
   .material-symbols-outlined {
-    font-size: 0.4rem;
+    font-size: 0.7rem;
   }
 
   #addproject p {
     font-size: 0.9rem;
+  }
+}
+@media screen and (max-width: 360px){
+  *{
+    font-size: 0.65rem;
   }
 }
 
