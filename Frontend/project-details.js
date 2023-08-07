@@ -21,7 +21,7 @@ async function fetchProjectDetails() {
         projectTitle = projectDetails.Name
         projectDescription.textContent = `Description: ${projectDetails.Description}`;
         projectEndDate.textContent = `End Date: ${parsedDate}`;
-        completionStatus.textContent = `Status: ${projectDetails.IsComplete ? 'Complete' : 'Incomplete'}`;
+        completionStatus.textContent = `${projectDetails.IsComplete ? 'Complete' : 'Incomplete'}`;
 
 
         if (projectDetails.IsComplete) {
@@ -123,9 +123,6 @@ function populateUserListWithCheckboxes(users) {
             name.textContent = `Name: ${user.Username}`;
             userCard.appendChild(name);
 
-            const email = document.createElement('p');
-            email.textContent = `Email: ${user.Email}`;
-            userCard.appendChild(email);
 
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
@@ -148,15 +145,14 @@ function populateUserListWithoutCheckboxes(users) {
 
         const avatar = document.createElement('img');
         avatar.src = "/Frontend/images/avatar.png";
+
         userCard.appendChild(avatar);
 
         const name = document.createElement('p');
         name.textContent = `Name: ${user.Username}`;
         userCard.appendChild(name);
 
-        const email = document.createElement('p');
-        email.textContent = `Email: ${user.Email}`;
-        userCard.appendChild(email);
+
 
         userListContainer.appendChild(userCard);
     });

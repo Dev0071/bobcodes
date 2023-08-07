@@ -56,7 +56,6 @@ function populateCompleteProjects(projects) {
 		const titleElement = document.createElement('h4');
 		titleElement.textContent = project.Name;
 		projectElement.append(titleElement);
-
 		const descriptionElement = document.createElement('p');
 		descriptionElement.classList.add('project-description-class');
 		descriptionElement.textContent = project.Description;
@@ -65,11 +64,13 @@ function populateCompleteProjects(projects) {
 		let rawDate = project.EndDate;
 		let formattedDate = formatDate(rawDate);
 		const endDateElement = document.createElement('p');
-		endDateElement.textContent = formattedDate;
+		endDateElement.textContent = `Completion Deadline: ${formattedDate}`;
 		projectElement.append(endDateElement);
 
 		const completionStatusElement = document.createElement('p');
-		completionStatusElement.textContent = project.IsComplete;
+		completionStatusElement.textContent = `Status: ${
+			project.IsComplete ? 'Complete' : 'Incomplete'
+		}`;
 		projectElement.append(completionStatusElement);
 
 		allProjectsContainer.appendChild(projectElement);
@@ -100,14 +101,16 @@ function populateIncompleteProjects(projects) {
 		let rawDate = project.EndDate;
 		let formattedDate = formatDate(rawDate);
 		const endDateElement = document.createElement('p');
-		endDateElement.textContent = formattedDate;
+		endDateElement.textContent = `Completion Deadline: ${formattedDate}`;
 		projectElement.append(endDateElement);
-
 		const completionStatusElement = document.createElement('p');
-		completionStatusElement.textContent = project.IsComplete;
+		completionStatusElement.textContent = `Status: ${
+			project.IsComplete ? 'Complete' : 'Incomplete'
+		}`;
 		projectElement.append(completionStatusElement);
 
 		allProjectsContainer.appendChild(projectElement);
+
 
 		projectElement.addEventListener('click', () => {
 			// Redirect to projectdetails.html with the project ID as a query parameter
@@ -123,7 +126,7 @@ function populateAllProjects(projects) {
 		const projectElement = document.createElement('div');
         projectElement.classList.add('project');
         if (index === 0) {
-            projectElement.style.marginTop = '160px';
+            projectElement.style.marginBottom = '30px';
         }
 		const titleElement = document.createElement('h4');
 		titleElement.textContent = project.Name;
