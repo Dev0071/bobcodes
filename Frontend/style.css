@@ -13,7 +13,7 @@
   margin: 0;
   font-family: "Open Sans", sans-serif;
   font-family: "Roboto Mono", monospace;
-  font-weight: bold;
+  /* font-weight: bold; */
 }
 
 body {
@@ -277,6 +277,7 @@ form input {
   * {
     font-size: 0.9rem;
   }
+
   body {
     background-image: contain;
   }
@@ -286,11 +287,13 @@ form input {
   * {
     font-size: 0.9rem;
   }
+
   body {
     background-image: none;
     background-color: var(--white);
   }
-  .logincard{
+
+  .logincard {
     box-shadow: 5px 4px rgba(5, 73, 144, 0.4);
   }
 }
@@ -299,7 +302,8 @@ form input {
   * {
     font-size: 0.8rem;
   }
-  .logincard{
+
+  .logincard {
     box-shadow: 5px 4px rgba(5, 73, 144, 0.4);
   }
 }
@@ -315,8 +319,9 @@ form input {
     font-size: 0.9rem;
   }
 }
-@media screen and (max-width: 360px){
-  *{
+
+@media screen and (max-width: 360px) {
+  * {
     font-size: 0.65rem;
   }
 }
@@ -426,7 +431,7 @@ div.team {
 .project {
   margin-left: 10px;
   margin-top: 10px;
-  
+
   margin-bottom: 10px;
   margin-right: 10px;
   text-align: center;
@@ -434,10 +439,13 @@ div.team {
   padding: 10px;
   border-radius: 10px;
   display: inline-block;
-  width: calc(90.33% - 20px); /* Adjust width as needed */
-  vertical-align: top; /* Align cards at the top */
+  width: calc(90.33% - 20px);
+  /* Adjust width as needed */
+  vertical-align: top;
+  /* Align cards at the top */
 
 }
+
 #incomplete-projects {
   width: 100%;
   padding: 4px;
@@ -457,8 +465,10 @@ div.team {
 }
 
 #all-projects .project:first-child {
-  margin-top: 5px; /* Adjust the value as needed */
-  flex-grow: initial; /* Reset the flex-grow property for the first project */
+  margin-top: 5px;
+  /* Adjust the value as needed */
+  flex-grow: initial;
+  /* Reset the flex-grow property for the first project */
 }
 
 #all-projects {
@@ -492,11 +502,10 @@ div.team {
 }
 
 
-#headings{
+#headings {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
   margin-top: 20px;
   margin-bottom: 10px;
 }
-
