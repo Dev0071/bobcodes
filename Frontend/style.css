@@ -366,9 +366,10 @@ div.team {
   padding: 10px;
   border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
-  width: 35vw;
+  flex-direction: row;
+  height: 3.9rem;
+  /* justify-content: space-evenly; */
+  /* width: 35vw; */
 }
 
 #incomplete-projects {
@@ -392,7 +393,7 @@ div.team {
   padding: 4px;
   overflow: auto;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   text-align: center;
 }
 .project:hover {

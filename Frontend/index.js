@@ -3,11 +3,11 @@ const userJsonString = localStorage.getItem("user");
 const user = JSON.parse(userJsonString);
 const adminSection = document.getElementById('admin-section');
 const userSection = document.getElementById('user-section')
-const createProjectForm = document.getElementById('create-poject-form');
+const createProjectForm = document.getElementById('create-project-form');
 
 document.addEventListener("DOMContentLoaded", () => {
     if (!token) {
-        // Redirect to the login page if the token is not present.
+
         window.location.href = "login.html";
     } else {
 
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
             userSection.style.display = 'none'
             adminSection.style.display = 'block'
 
-            allApiCalls()
 
         } else {
             userSection.style.display = 'block'
@@ -25,11 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     }
+
+    allApiCalls()
 });
 
 createProjectForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    createProject()
+    await createProject();
 })
 
 async function allApiCalls() {
