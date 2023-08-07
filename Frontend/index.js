@@ -81,6 +81,11 @@ function populateCompleteProjects(projects) {
 
 
         allProjectsContainer.appendChild(projectElement)
+
+        projectElement.addEventListener('click', () => {
+            // Redirect to projectdetails.html with the project ID as a query parameter
+            window.location.href = `projectdetails.html?projectId=${project.ProjectID}`;
+        });
     })
 }
 
@@ -112,6 +117,12 @@ function populateIncompleteProjects(projects) {
 
 
         allProjectsContainer.appendChild(projectElement)
+
+
+        projectElement.addEventListener('click', () => {
+            // Redirect to projectdetails.html with the project ID as a query parameter
+            window.location.href = `projectdetails.html?projectId=${project.ProjectID}`;
+        });
     })
 }
 
@@ -142,6 +153,10 @@ function populateAllProjects(projects) {
         completionStatusElement.textContent = `Status: ${project.IsComplete ? 'Complete' : 'Incomplete'}`;
         projectElement.append(completionStatusElement);
 
+        projectElement.addEventListener('click', () => {
+            // Redirect to projectdetails.html with the project ID as a query parameter
+            window.location.href = `projectdetails.html?projectId=${project.ProjectID}`;
+        });
 
         allProjectsContainer.appendChild(projectElement)
     })
