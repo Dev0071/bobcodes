@@ -15,7 +15,7 @@
             font-family: "Monaco";
         }
 
-        #logout-icon:hover{
+        #logout-icon:hover {
             cursor: pointer;
             color: #000;
         }
@@ -51,13 +51,23 @@
                     <input type="text" placeholder="Searching for..."
                         style="width: 90%; border-radius: 5px; padding: 3px; margin-top: 10px;">
                 </div>
-                <div class="logouticon" >
+                <div class="logouticon">
                     <span id="acc-icon" class="material-symbols-outlined">account_circle </span>
                     <p>Hello, User</p>
                 </div>
             </div>
             <div class="recent-projects">
                 <p>Recent projects</p>
+                <div class="project">
+                    <h5>project Title</h5>
+                    <p>project Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, doloremque.</p>
+                    <p>due date: 24/09/2023</p>
+
+                    <div>
+                        <input type="checkbox" name="" id="">
+                        <label>mark as complete</label>
+                    </div>
+                </div>
             </div>
             <div class="reminder">
                 <p>Reminders</p>
@@ -86,10 +96,10 @@
                 </form>
             </div>
 
-            <div class="log-out">
+            <!-- <div class="log-out">
                 <span id="not-icon" class="material-symbols-outlined">notifications</span>
-               
-            </div>
+                <span id="out-icon" class="material-symbols-outlined">logout</span>
+            </div> -->
             <div class="admin-nav">
                 <div id="addproject">
                     <span onclick="openForm()" style="font-size: 40px;"
@@ -98,8 +108,7 @@
                 </div>
                 <hr>
                 <div id="acc-icon">
-                    <span style="font-size: 30px; padding-right: 10px;"
-                        class="material-symbols-outlined">account_circle</span>
+                    <span style="font-size: 30px;" class="material-symbols-outlined">account_circle</span>
                 </div>
             </div>
             <h3 style="text-align: center;">Team Members</h3>
@@ -108,7 +117,7 @@
 
             </div>
 
-            <div  id="headings">
+            <div id="headings">
                 <p>Complete Projects</p>
                 <p>Incomplete Projects</p>
                 <p>Complete Projects</p>

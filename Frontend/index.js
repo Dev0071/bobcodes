@@ -22,6 +22,19 @@ document.addEventListener('DOMContentLoaded', () => {
 	allApiCalls();
 });
 
+const userId = user.userId;
+
+async function fetchUserProjects(userId) {
+	try {
+		console.log('called');
+		const response = await fetch(`http://localhost:9500/users/projects/user/${userId}`);
+		const userProjects = await response.json();
+		console.log(userProjects);
+	} catch (error) {
+		console.error('Error fetching user projects:', error.message);
+	}
+}
+
 createProjectForm.addEventListener('submit', async event => {
 	event.preventDefault();
 	await createProject();
