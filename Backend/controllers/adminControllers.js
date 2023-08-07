@@ -21,6 +21,30 @@ const createProject = async (req, res) => {
 	}
 };
 
+const getProjectByID = async (req, res) => {
+    try {
+        const { ProjectID } = req.params;
+
+        if (!ProjectID) {
+            return res.status(400).json({ error: 'ProjectID parameter is missing' });
+        }
+
+        const projectResult = await DB.exec('getProjectByID', { ProjectID });
+
+        if (!projectResult || projectResult.recordset.length === 0) {
+            return res.status(404).json({ error: 'Project not found' });
+        }
+
+        const project = projectResult.recordset[0];
+        return res.status(200).json(project);
+    } catch (error) {
+        console.error('An error occurred:', error.message);
+        return res.status(500).json({ error: 'Oops, something went wrong while fetching the project' });
+    }
+};
+
+
+
 const getAllProjects = async (req, res) => {
 	try {
 		const allProjects = await DB.query('SELECT * FROM Projects');
@@ -96,4 +120,4 @@ const deleteProject = async (req, res) => {
 	}
 };
 
-module.exports = { assignProject, createProject, getAllProjects, deleteProject };
+module.exports = { assignProject, createProject, getAllProjects, deleteProject, getProjectByID };
