@@ -72,7 +72,7 @@ nav ul li:hover {
 }
 
 .user {
-  display: grid;
+  /* display: grid;
   grid-template-columns: repeat(2, 1fr);
   grid-template-rows: repeat(4, 1fr);
   grid-template-areas:
@@ -84,6 +84,7 @@ nav ul li:hover {
   gap: 10px;
   /* background-color: aqua; */
   padding: 10px;
+  */
 }
 
 .user-nav {
@@ -159,12 +160,12 @@ form input {
 .recent-projects:hover,
 .reminder:hover,
 .today:hover {
-  background-color: var(--orange2);
-  color: var(--blue);
+  /* background-color: var(--orange2); */
+  /* color: var(--blue); */
   border-radius: 5px;
-  font-size: 25px;
-  height: 100%;
-  width: 100%;
+  /* font-size: 25px; */
+  /* height: 100%;
+  width: 100%; */
 }
 
 .logouticon span {
@@ -198,7 +199,7 @@ form input {
   flex-direction: row;
   justify-content: space-between;
   border-radius: 5px;
-  height: 10%;
+  /* height: 10%; */
   /* background-color: yellow; */
 }
 
@@ -230,7 +231,7 @@ form input {
 
 .tasks {
   /* background-color: brown; */
-  height: 50%;
+  height: 40%;
   display: flex;
   flex-direction: row;
   gap: 5px;
@@ -407,7 +408,6 @@ div.team {
   border: none;
   border-radius: 4px;
   cursor: pointer;
-
 }
 
 .form-container .submit {
@@ -429,14 +429,16 @@ div.team {
 }
 
 .project {
-  margin-left: 10px;
-  margin-top: 10px;
+  /* margin-left: 10px;
+  margin-top: 10px; */
 
-  margin-bottom: 10px;
-  margin-right: 10px;
+  /* margin-bottom: 10px;
+  margin-right: 10px; */
+  margin: 0.8rem;
   text-align: center;
-  background-color: #888;
-  padding: 10px;
+  background-color: rgb(236, 133, 36);
+  padding: 15px;
+  gap: 0.5rem;
   border-radius: 10px;
   display: inline-block;
   width: calc(90.33% - 20px);
@@ -444,6 +446,22 @@ div.team {
   vertical-align: top;
   /* Align cards at the top */
 
+}
+
+/* display: flex;
+  color: white;
+
+  flex-direction: column;
+  /* height: 3.9rem; */
+/* justify-content: space-evenly; */
+/* width: 35vw; */
+}
+
+*/ .project div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
 }
 
 #incomplete-projects {
@@ -464,18 +482,10 @@ div.team {
   text-align: center;
 }
 
-#all-projects .project:first-child {
-  margin-top: 5px;
-  /* Adjust the value as needed */
-  flex-grow: initial;
-  /* Reset the flex-grow property for the first project */
-}
-
 #all-projects {
   width: 33%;
   padding: 4px;
   overflow: auto;
-  height: auto;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -483,29 +493,26 @@ div.team {
 
 .project:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
 }
 
 .project-description-class {
   max-height: 3em;
-  text-overflow: ellipsis;
+  /* Adjust this to control the maximum number of lines */
   overflow: hidden;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  margin-top: 10px;
-  margin-bottom: 10px;
 }
 
 .incomplete-projects .project {
   flex-grow: 1;
 }
 
+#all-projects .project:first-child {
+  margin-top: 25px;
+  /* Adjust the value as needed */
+}
 
 #headings {
   display: flex;
   flex-direction: row;
   justify-content: space-evenly;
-  margin-top: 20px;
-  margin-bottom: 10px;
 }
