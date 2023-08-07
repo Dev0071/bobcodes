@@ -13,6 +13,7 @@ const createProject = async (req, res) => {
 
 		await DB.exec('CreateProject', { ProjectID, Name, Description, EndDate });
 
+		console.log('random id', ProjectID)
 		res.status(200).json({ message: 'Project created successfully' });
 	} catch (error) {
 		console.error('An error occurred:', error.message);

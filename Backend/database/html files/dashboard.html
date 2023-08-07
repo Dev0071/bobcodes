@@ -27,9 +27,10 @@
         if (token) {
             const decodedToken = parseJwt(token);
 
+            
             if (decodedToken) {
                 if (decodedToken.Role === "admin") {
-                    welcomeMessage.textContent = "Welcome Admin";
+                    welcomeMessage.textContent = "Welcome Admin" + decodedToken.Role;
                     // Admin-specific logic here...
                 } else {
                     welcomeMessage.textContent = "Welcome " + decodedToken.Username;
