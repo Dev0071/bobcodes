@@ -25,8 +25,6 @@ loginForm.addEventListener('submit', async event => {
 
 			// Fetch user details using the user ID from the payload
 			const userId = decodedToken.UserID;
-			console.log(userId);
-
 			const userDetailsResponse = await fetch(`http://localhost:9500/users/user/${userId}`, {
 				method: 'GET',
 			});
@@ -41,6 +39,7 @@ loginForm.addEventListener('submit', async event => {
 			// Update the isAdmin status in the payload based on the API response
 			decodedToken.isAdmin = userDetails.isAdmin;
 
+			// Create a user object with the updated payload data to store in localStorage
 			const user = {
 				userId: decodedToken.UserID,
 				username: decodedToken.Username,
@@ -51,9 +50,6 @@ loginForm.addEventListener('submit', async event => {
 			localStorage.setItem('user', JSON.stringify(user));
 
 			window.location.href = 'index.html';
-
-			const project = fetchUserProjects(userId);
-			console.log(project);
 		} else {
 			const errorResponse = await response.json();
 			const errorMessage = errorResponse.message;
@@ -81,15 +77,5 @@ function parseJwt(token) {
 	} catch (error) {
 		console.error('Error parsing JWT token:', error);
 		return null;
-	}
-}
-
-async function fetchUserProjects(userId) {
-	try {
-		const response = await fetch(`http://localhost:9500/users/projects/user/${userId}`);
-		const userProjects = await response.json();
-		console.log(userProjects);
-	} catch (error) {
-		console.error('Error fetching user projects:', error.message);
 	}
 }
