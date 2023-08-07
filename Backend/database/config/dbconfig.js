@@ -4,7 +4,7 @@ dotenv.config();
 
 const pool = new mssql.ConnectionPool({
 	user: process.env.DB_USER,
-	password: process.env.DB_PASSWORD,
+	password: process.env.DB_PWD,
 	database: process.env.DB_NAME,
 	server: process.env.SERVER_NAME,
 	pool: {
@@ -28,5 +28,3 @@ const connectToPool = async () => {
 };
 
 module.exports = { connectToPool, pool };
-
-

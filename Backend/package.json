@@ -1,6 +1,7 @@
-{
+
+
   "dependencies": {
-    "@babel/preset-env": "^7.22.9",
+   
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.3.1",
@@ -26,4 +27,3 @@
   "devDependencies": {
     "jest": "^29.6.2"
   }
-}

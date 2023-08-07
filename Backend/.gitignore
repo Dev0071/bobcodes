@@ -2,5 +2,6 @@ node_modules
 .env
 app.http
 .idea
+
 database/html files
 database/config/dbconfig.js
