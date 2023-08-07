@@ -119,10 +119,12 @@ function populateIncompleteProjects(projects) {
 function populateAllProjects(projects) {
 	const allProjectsContainer = document.getElementById('all-projects');
 
-	projects.forEach(project => {
+	projects.forEach((project, index) => {
 		const projectElement = document.createElement('div');
-		projectElement.classList.add('project');
-
+        projectElement.classList.add('project');
+        if (index === 0) {
+            projectElement.style.marginTop = '160px';
+        }
 		const titleElement = document.createElement('h4');
 		titleElement.textContent = project.Name;
 		projectElement.append(titleElement);
@@ -135,7 +137,7 @@ function populateAllProjects(projects) {
 		let rawDate = project.EndDate;
 		let formattedDate = formatDate(rawDate);
 		const endDateElement = document.createElement('p');
-		endDateElement.textContent = `Completion Date: ${formattedDate}`;
+		endDateElement.textContent = `Completion Deadline: ${formattedDate}`;
 		projectElement.append(endDateElement);
 
 		const completionStatusElement = document.createElement('p');

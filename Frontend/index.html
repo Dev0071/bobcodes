@@ -14,6 +14,11 @@
             background-color: rgb(199, 212, 228);
             font-family: "Monaco";
         }
+
+        #logout-icon:hover{
+            cursor: pointer;
+            color: #000;
+        }
     </style>
 </head>
 
@@ -33,7 +38,7 @@
                 </li>
             </ul>
 
-            <div class="log-out">
+            <div class="log-out" id="logout-icon">
                 <span class="material-symbols-outlined" onclick="logout()">logout</span>
                 <span>Logout</span>
             </div>
@@ -46,7 +51,7 @@
                     <input type="text" placeholder="Searching for..."
                         style="width: 90%; border-radius: 5px; padding: 3px; margin-top: 10px;">
                 </div>
-                <div class="logouticon">
+                <div class="logouticon" >
                     <span id="acc-icon" class="material-symbols-outlined">account_circle </span>
                     <p>Hello, User</p>
                 </div>
@@ -83,7 +88,7 @@
 
             <div class="log-out">
                 <span id="not-icon" class="material-symbols-outlined">notifications</span>
-                <span id="out-icon" class="material-symbols-outlined">logout</span>
+               
             </div>
             <div class="admin-nav">
                 <div id="addproject">

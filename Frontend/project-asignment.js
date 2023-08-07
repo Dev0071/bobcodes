@@ -9,9 +9,6 @@ async function fetchProjectDetails() {
         });
 
         const projectDetails = await response.json();
-
-
-
         const projectIdElement = document.querySelector('#project-id');
         const projectName = document.querySelector('#project-name');
         const projectDescription = document.querySelector('#project-description');
@@ -46,7 +43,7 @@ async function fetchUsersUnderProject(){
             method: "GET"
         })
         const users = await usersResponse.json();
-        console.log(users, 'eeeeee')
+        populateUserListWithoutCheckboxes(users)
     }catch (e) {
         console.log(e.message)
     }
@@ -59,13 +56,9 @@ async function fetchUnassignedUsers() {
             method: "GET"
         });
 
-
-        const  users = await  response.json()
-        console.log("unassigned users", users)
-
         if (response.ok) {
             const users = await response.json();
-            populateUserList(users);
+           populateUserListWithCheckboxes(users)
         } else {
             console.log("Something went wrong while fetching users");
         }
@@ -74,38 +67,6 @@ async function fetchUnassignedUsers() {
     }
 }
 
-function populateUserList(users) {
-    const userListContainer = document.getElementById('user-list');
-
-    users.forEach(user => {
-        const userCard = document.createElement('div');
-        userCard.classList.add('user-card');
-
-        const avatar = document.createElement('img');
-        avatar.src = "/Frontend/images/avatar.png";
-        userCard.appendChild(avatar);
-
-        const name = document.createElement('p');
-        name.textContent = `Name: ${user.Username}`;
-        userCard.appendChild(name);
-
-        const email = document.createElement('p');
-        email.textContent = `Email: ${user.Email}`;
-        userCard.appendChild(email);
-
-        const checkbox = document.createElement('input');
-        checkbox.type = 'checkbox';
-
-        checkbox.dataset.userId = user.UserID;
-        checkbox.dataset.userName = user.Username
-        console.log(checkbox.dataset.userId = user.UserID,
-            checkbox.dataset.userName = user.Username)
-        checkbox.addEventListener('change', handleCheckboxChange);
-        userCard.appendChild(checkbox);
-
-        userListContainer.appendChild(userCard);
-    });
-}
 
 async function handleCheckboxChange(event) {
     const userId = event.target.dataset.userId;
@@ -142,6 +103,64 @@ async function handleCheckboxChange(event) {
         console.error('An error occurred:', error);
     }
 }
+function populateUserListWithCheckboxes(users) {
+    const userListContainer = document.getElementById('user-list');
+    if (users.length === 0) {
+        const noUsersMessage = document.createElement('p');
+        noUsersMessage.textContent = 'No available workers at the moment.';
+        noUsersMessage.style = 'text-align: center;'
+        userListContainer.appendChild(noUsersMessage);
+    } else {
+        users.forEach(user => {
+            const userCard = document.createElement('div');
+            userCard.classList.add('user-card');
+
+            const avatar = document.createElement('img');
+            avatar.src = "/Frontend/images/avatar.png";
+            userCard.appendChild(avatar);
+
+            const name = document.createElement('p');
+            name.textContent = `Name: ${user.Username}`;
+            userCard.appendChild(name);
+
+            const email = document.createElement('p');
+            email.textContent = `Email: ${user.Email}`;
+            userCard.appendChild(email);
+
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.dataset.userId = user.UserID;
+            checkbox.dataset.userName = user.Username;
+            checkbox.addEventListener('change', handleCheckboxChange);
+            userCard.appendChild(checkbox);
+
+            userListContainer.appendChild(userCard);
+        });
+    }
+}
+
+function populateUserListWithoutCheckboxes(users) {
+    const userListContainer = document.getElementById('user-list');
+
+    users.forEach(user => {
+        const userCard = document.createElement('div');
+        userCard.classList.add('user-card');
+
+        const avatar = document.createElement('img');
+        avatar.src = "/Frontend/images/avatar.png";
+        userCard.appendChild(avatar);
+
+        const name = document.createElement('p');
+        name.textContent = `Name: ${user.Username}`;
+        userCard.appendChild(name);
+
+        const email = document.createElement('p');
+        email.textContent = `Email: ${user.Email}`;
+        userCard.appendChild(email);
+
+        userListContainer.appendChild(userCard);
+    });
+}
 
 
 fetchProjectDetails();
@@ -162,3 +181,7 @@ function formatDate(inputDate) {
     return formattedDate;
 }
 
+function logout() {
+	localStorage.clear();
+	window.location.href = 'login.html';
+}
