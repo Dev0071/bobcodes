@@ -139,7 +139,7 @@ function populateAllProjects(projects) {
 		const projectElement = document.createElement('div');
         projectElement.classList.add('project');
         if (index === 0) {
-            projectElement.style.marginBottom = '30px';
+            projectElement.style.marginBottom = '60px';
         }
 		const titleElement = document.createElement('h4');
 		titleElement.textContent = project.Name;
