@@ -33,8 +33,8 @@
                 </li>
             </ul>
 
-            <div class="logut-div">
-                <li><span class="material-symbols-outlined" onclick="logout()">logout</span></li>
+            <div class="log-out">
+                <span class="material-symbols-outlined" onclick="logout()">logout</span>
                 <span>Logout</span>
             </div>
         </nav>
@@ -63,22 +63,23 @@
 
             <div class="form-popup" id="myForm">
                 <form class="form-container" id="create-project-form">
-                  <h1>New Project</h1>
+                    <h1>New Project</h1>
 
-                  <label for="project-name"><b>Project Name</b></label>
-                  <input type="text" placeholder="Enter the project's name" id="new-project-name" required>
+                    <label for="project-name"><b>Project Name</b></label>
+                    <input type="text" placeholder="Enter the project's name" id="new-project-name" required>
 
-                  <label for="project-description"><b>Project Description</b></label>
-                  <input type="text" placeholder="Enter the project's description" id="new-project-description" required>
+                    <label for="project-description"><b>Project Description</b></label>
+                    <input type="text" placeholder="Enter the project's description" id="new-project-description"
+                        required>
 
-                  <label for="end-date"><b>Expected End Date</b></label>
-                  <input type="date" name="psw" id="new-project-completion-date" required>
+                    <label for="end-date"><b>Expected End Date</b></label>
+                    <input type="date" name="psw" id="new-project-completion-date" required>
 
 
-                  <button type="submit" class="btn">Submit</button>
-                  <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
                 </form>
-              </div>
+            </div>
 
             <div class="log-out">
                 <span id="not-icon" class="material-symbols-outlined">notifications</span>
@@ -86,7 +87,8 @@
             </div>
             <div class="admin-nav">
                 <div id="addproject">
-                    <span onclick="openForm()" style="font-size: 40px;" class="material-symbols-outlined">playlist_add</span>
+                    <span onclick="openForm()" style="font-size: 40px;"
+                        class="material-symbols-outlined">playlist_add</span>
                     <p>Add <br> project</p>
                 </div>
                 <hr>
@@ -107,15 +109,14 @@
                 <p>Complete Projects</p>
             </div>
             <div class="tasks">
-
-                <div class="project-time" id="all-projects" >
+                <div class="project-time" id="all-projects">
 
                 </div>
                 <hr>
                 <div class="ongoing-prject">
-                   <div class="incomplete-projects" id="incomplete-projects">
+                    <div class="incomplete-projects" id="incomplete-projects">
 
-                   </div>
+                    </div>
                 </div>
                 <hr>
                 <div class="completed-projects">
@@ -126,6 +127,7 @@
     </div>
 
     <script src="/Frontend/index.js"></script>
+    <script src="/Frontend/userProjects.js"></script>
 </body>
 
 </html>

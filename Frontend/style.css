@@ -5,7 +5,9 @@
   --white: rgb(220, 226, 238);
   --orange2: rgb(250, 188, 154);
 }
+
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans&family=Roboto+Mono&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -13,6 +15,7 @@
   font-family: "Roboto Mono", monospace;
   font-weight: bold;
 }
+
 body {
   height: 100vh;
   background-size: cover;
@@ -22,6 +25,7 @@ body {
   font-family: "Open Sans", sans-serif;
   font-family: "Roboto Mono", monospace;
 }
+
 .container {
   box-shadow: darkgrey;
   display: flex;
@@ -34,27 +38,39 @@ body {
   box-shadow: 5px 4px rgba(5, 73, 144, 0.4);
   z-index: 0;
 }
+
 nav {
   display: flex;
+  padding: 1rem;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   background-color: var(--orange);
-  width: 10%;
+  /* width: 10%; */
   font-size: 18px;
   border-radius: 5px;
 }
+
 nav ul {
   display: flex;
   flex-direction: column;
   list-style: none;
-  margin-left: 2%;
+  gap: 0.5rem;
+  /* margin-left: 2%; */
 }
+
+nav ul li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
 nav ul li:hover {
   color: white;
   cursor: pointer;
   /* box-shadow: 1px 1px 1px 1px var(--blue); */
   outline: 2px solid var(--blue);
 }
+
 .user {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -69,16 +85,19 @@ nav ul li:hover {
   /* background-color: aqua; */
   padding: 10px;
 }
+
 .user-nav {
   /* background-color: blue; */
   grid-area: usernav;
   display: flex;
   justify-content: space-between;
 }
+
 .recent-projects {
   /* background-color: chartreuse; */
   grid-area: recentprojects;
 }
+
 .recent-projects span {
   /* background-color: chartreuse; */
   display: flex;
@@ -86,20 +105,24 @@ nav ul li:hover {
   justify-content: space-between;
   padding-right: 10%;
 }
+
 .reminder {
   /* background-color: brown; */
   grid-area: reminder;
 }
+
 .btn {
   width: 8vw;
   height: 4vh;
   border-radius: 5px;
   margin-bottom: 15px;
 }
+
 .btn:hover {
   background-color: var(--blue);
   color: white;
 }
+
 .logincard,
 .signup {
   display: flex;
@@ -110,6 +133,7 @@ nav ul li:hover {
   border-radius: 5px;
   justify-content: space-evenly;
 }
+
 .login {
   justify-content: space-evenly;
   display: flex;
@@ -117,11 +141,13 @@ nav ul li:hover {
   align-items: center;
   gap: 5px;
 }
+
 form input {
   width: 50%;
   padding: 5px;
   border-radius: 5px;
 }
+
 .newuser,
 #btn {
   display: flex;
@@ -129,21 +155,24 @@ form input {
   text-align: center;
   justify-content: space-evenly;
 }
-/*.recent-projects:hover,*/
-/*.reminder:hover,*/
-/*.today:hover {*/
-/*  background-color: var(--orange2);*/
-/*  color: var(--blue);*/
-/*  border-radius: 5px;*/
-/*  font-size: 25px;*/
-/*  height: 100%;*/
-/*  width: 100%;*/
-/*}*/
+
+.recent-projects:hover,
+.reminder:hover,
+.today:hover {
+  background-color: var(--orange2);
+  color: var(--blue);
+  border-radius: 5px;
+  font-size: 25px;
+  height: 100%;
+  width: 100%;
+}
+
 .logouticon span {
   display: flex;
   width: 45%;
   justify-content: flex-end;
 }
+
 .admin {
   /* background-color: chartreuse; */
   display: flex;
@@ -152,14 +181,16 @@ form input {
   width: 90%;
   gap: 10px;
 }
+
 .log-out {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: center; */
   align-items: center;
-  padding-right: 10px;
-  color: var(--orange);
-  height: 10%;
+  /* padding-right: 10px; */
+  /* color: var(--orange); */
+  /* height: 10%; */
   /* background-color: blue; */
+  gap: 0.5rem;
 }
 
 .admin-nav {
@@ -170,15 +201,18 @@ form input {
   height: 10%;
   /* background-color: yellow; */
 }
+
 #addproject {
   display: flex;
 }
+
 #not-icon,
 #out-icon,
 #acc-icon,
 #add {
   color: var(--orange);
 }
+
 #not-icon:hover,
 #out-icon:hover,
 #acc-icon:hover,
@@ -186,11 +220,14 @@ form input {
   color: var(--blue);
   cursor: pointer;
 }
+
 .team {
   /* background-color: black; */
-  height: 28%;
+  /* height: 28%; */
   z-index: 1;
+  padding: 0.3rem;
 }
+
 .tasks {
   /* background-color: brown; */
   height: 40%;
@@ -198,6 +235,7 @@ form input {
   flex-direction: row;
   gap: 5px;
 }
+
 .project-time,
 .ongoing-prject,
 .completed-projects {
@@ -205,57 +243,84 @@ form input {
   justify-content: center;
   width: 33%;
 }
+
 #add-project {
   background-color: var(--orange);
   color: white;
   cursor: pointer;
   padding: 10px;
 }
+
 #add-project:hover {
   background-color: var(--blue);
   color: white;
   cursor: pointer;
 }
+
 #addproject p {
   font-size: 12px;
   padding-top: 5px;
 }
-/*.team:hover,*/
-/*.project-time:hover,*/
-/*.ongoing-prject:hover,*/
-/*.completed-projects:hover {*/
-/*  background-color: var(--grey);*/
-/*  border-radius: 5px;*/
-/*  margin: 5px 5px 5px;*/
-/*  padding: 5px;*/
-/*  color: white;*/
-/*}*/
 
+.team:hover,
+.project-time:hover,
+.ongoing-prject:hover,
+.completed-projects:hover {
+  background-color: var(--grey);
+  border-radius: 5px;
+  margin: 5px 5px 5px;
+  padding: 5px;
+  color: white;
+}
 
 @media screen and (max-width: 1120px) {
   * {
     font-size: 0.9rem;
   }
-}
-@media screen and (max-width: 920px) {
-  * {
-    font-size: 0.7rem;
+  body {
+    background-image: contain;
   }
 }
-@media screen and (max-width: 620px) {
+
+@media screen and (max-width: 772px) {
   * {
-    font-size: 0.6rem;
+    font-size: 0.9rem;
+  }
+  body {
+    background-image: none;
+    background-color: var(--white);
+  }
+  .logincard{
+    box-shadow: 5px 4px rgba(5, 73, 144, 0.4);
   }
 }
-@media screen and (max-width: 500px) {
+
+@media screen and (max-width: 700px) {
+  * {
+    font-size: 0.8rem;
+  }
+  .logincard{
+    box-shadow: 5px 4px rgba(5, 73, 144, 0.4);
+  }
+}
+
+@media screen and (max-width: 540px) {
+
   *,
   .material-symbols-outlined {
-    font-size: 0.4rem;
+    font-size: 0.7rem;
   }
+
   #addproject p {
     font-size: 0.9rem;
   }
 }
+@media screen and (max-width: 360px){
+  *{
+    font-size: 0.65rem;
+  }
+}
+
 div.team {
   margin: 4px, 4px;
   padding: 4px;
@@ -274,8 +339,9 @@ div.team {
 
 .team-member:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
 }
+
 /* Center the form */
 .form-popup {
   display: flex;
@@ -357,7 +423,11 @@ div.team {
 }
 
 .project {
-  margin: 10px;
+  margin-left: 10px;
+  margin-top: 10px;
+
+  margin-bottom: 10px;
+  margin-right: 10px;
   text-align: center;
   background-color: #888;
   padding: 10px;
@@ -375,6 +445,7 @@ div.team {
   flex-direction: column;
   text-align: center;
 }
+
 #complete-projects {
   width: 33%;
   padding: 4px;
@@ -383,6 +454,7 @@ div.team {
   flex-direction: column;
   text-align: center;
 }
+
 #all-projects {
   width: 33%;
   padding: 4px;
@@ -391,13 +463,15 @@ div.team {
   flex-direction: column;
   text-align: center;
 }
+
 .project:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
 }
 
-.project-description-class{
-  max-height: 3em; /* Adjust this to control the maximum number of lines */
+.project-description-class {
+  max-height: 3em;
+  /* Adjust this to control the maximum number of lines */
   overflow: hidden;
 }
 
