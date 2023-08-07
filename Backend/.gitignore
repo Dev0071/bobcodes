@@ -3,3 +3,5 @@ node_modules
 app.http
 .idea
 database/html files
+jest.config.js
+html files

@@ -1,13 +1,28 @@
+
+
 CREATE OR ALTER PROCEDURE DeleteProject
-    @ProjectName NVARCHAR(255) -- Assuming the Name can be up to 255 characters long
+    @ProjectName NVARCHAR(255) 
 AS
 BEGIN
+    DECLARE @ProjectID UNIQUEIDENTIFIER;
+
+    -- Check if the project exists
+    SELECT @ProjectID = ProjectID FROM Projects WHERE Name = @ProjectName;
+
+    -- If project not found, return a message
+    IF @ProjectID IS NULL
+    BEGIN
+        SELECT 'Project not found' AS Message;
+        RETURN;
+    END
     
     BEGIN TRANSACTION;
 
-    DELETE FROM UserProjects WHERE ProjectID = (SELECT ProjectID FROM Projects WHERE Name = @ProjectName);
+    -- Delete user assignments
+    DELETE FROM UserProjects WHERE ProjectID = @ProjectID;
 
-    DELETE FROM Projects WHERE Name = @ProjectName;
+    -- Delete the project
+    DELETE FROM Projects WHERE ProjectID = @ProjectID;
 
     COMMIT TRANSACTION;
 
