@@ -63,8 +63,10 @@ const assignProject = async (req, res) => {
 	try {
 		const UserProjectID = uuidv4();
 		const { UserID, ProjectID, Username, ProjectName } = req.body;
+
 		const existingAssignment = await DB.exec('checkUserAssignment', { UserID });
-		if (!existingAssignment.recordset) {
+
+		if (existingAssignment.recordset.length === 0) {
 			await DB.exec('AssignProjectToUser', {
 				UserProjectID,
 				UserID,
@@ -77,6 +79,7 @@ const assignProject = async (req, res) => {
 
 			if (userResult && userResult.recordset.length > 0) {
 				const userEmail = userResult.recordset[0].Email;
+
 				// Send project assignment email to the user
 				const userMessageOptions = {
 					from: process.env.EMAIL,
@@ -88,11 +91,11 @@ const assignProject = async (req, res) => {
 				await sendMail(userMessageOptions);
 			}
 
-			return res
-				.status(200)
-				.json({ message: 'Project assigned successfully and a notifaction email has been sent' });
+			return res.status(200).json({
+				message: 'Project assigned successfully and a notification email has been sent',
+			});
 		} else {
-			return res.status(409).json({ error: 'user already assigned a project' });
+			return res.status(409).json({ error: 'User already assigned a project' });
 		}
 	} catch (error) {
 		console.error('Error assigning project:', error);
@@ -125,7 +128,7 @@ const deleteProject = async (req, res) => {
 const getUnassignedUsers = async (req, res) => {
 	try {
 		const unassignedUsers = await DB.query(
-			`SELECT * FROM Users WHERE UserID NOT IN (SELECT UserID FROM UserProjects)`,
+			`SELECT UserID, Username, Email FROM Users WHERE IsAssigned = 1`,
 		);
 		res.status(200).json(unassignedUsers.recordset);
 	} catch (error) {
