@@ -5,8 +5,9 @@
 CREATE TABLE Projects (
     ProjectID UNIQUEIDENTIFIER PRIMARY KEY,
     Name NVARCHAR(255) NOT NULL,
-    Description NVARCHAR(MAX),
-    EndDate DATE
+    Description NVARCHAR(MAX) NOT NULL ,
+    EndDate DATE NOT NULL ,
+    IsComplete BIT NOT NULL DEFAULT 0
 );
 
 
@@ -16,3 +17,5 @@ CREATE TABLE Projects (
 ALTER TABLE Projects
 ADD IsComplete BIT NOT NULL DEFAULT 0;
 
+
+SELECT * FROM Projects;

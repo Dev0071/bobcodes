@@ -9,3 +9,4 @@ BEGIN
     INSERT INTO Projects (ProjectID, Name, Description, EndDate)
     VALUES (@ProjectID, @Name, @Description, @EndDate);
 END
+

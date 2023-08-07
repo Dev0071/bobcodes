@@ -1,9 +1,17 @@
-CREATE OR ALTER PROCEDURE updateProjectStatus
-    @ProjectID UNIQUEIDENTIFIER,
-    @IsComplete BIT
+CREATE OR ALTER PROCEDURE updateProjectStatusProcedure
+@ProjectID UNIQUEIDENTIFIER
 AS
 BEGIN
+    BEGIN TRANSACTION;
+
     UPDATE Projects
-    SET IsComplete = @IsComplete
+    SET IsComplete = 1
     WHERE ProjectID = @ProjectID;
+
+    COMMIT TRANSACTION;
+
+    SELECT 'Project marked as complete' AS Message;
 END
+
+
+SELECT * FROM projects;
