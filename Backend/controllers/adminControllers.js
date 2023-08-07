@@ -40,33 +40,36 @@ const assignProject = async (req, res) => {
 		const UserProjectID = uuidv4();
 		const { UserID, ProjectID, Username, ProjectName } = req.body;
 		const existingAssignment = await DB.exec('checkUserAssignment', { UserID });
-		if (existingAssignment.recordset.length) {
-			return res.status(409).json({ error: 'User already has a project assigned' });
+		if (!existingAssignment.recordset) {
+			await DB.exec('AssignProjectToUser', {
+				UserProjectID,
+				UserID,
+				Username,
+				ProjectID,
+				ProjectName,
+			});
+
+			const userResult = await DB.query(`SELECT Email FROM Users WHERE UserID = '${UserID}'`);
+
+			if (userResult && userResult.recordset.length > 0) {
+				const userEmail = userResult.recordset[0].Email;
+				// Send project assignment email to the user
+				const userMessageOptions = {
+					from: process.env.EMAIL,
+					to: userEmail,
+					subject: `You have been assigned to a new project: ${ProjectName}`,
+					html: `<p>You have been assigned to the project: ${ProjectName}. Please log in to your account to view the details.</p>`,
+				};
+
+				await sendMail(userMessageOptions);
+			}
+
+			return res
+				.status(200)
+				.json({ message: 'Project assigned successfully and a notifaction email has been sent' });
+		} else {
+			return res.status(409).json({ error: 'user already assigned a project' });
 		}
-		await DB.exec('AssignProjectToUser', {
-			UserProjectID,
-			UserID,
-			Username,
-			ProjectID,
-			ProjectName,
-		});
-
-		const userResult = await DB.query(`SELECT Email FROM Users WHERE UserID = '${UserID}'`);
-
-		if (userResult && userResult.recordset.length > 0) {
-			const userEmail = userResult.recordset[0].Email;
-			// Send project assignment email to the user
-			const userMessageOptions = {
-				from: process.env.EMAIL,
-				to: userEmail,
-				subject: `You have been assigned to a new project: ${ProjectName}`,
-				html: `<p>You have been assigned to the project: ${ProjectName}. Please log in to your account to view the details.</p>`,
-			};
-
-			await sendMail(userMessageOptions);
-		}
-
-		return res.status(200).json({ message: 'Project assigned successfully' });
 	} catch (error) {
 		console.error('Error assigning project:', error);
 		return res.status(500).json({ error: 'An error occurred while assigning the project' });
@@ -77,9 +80,16 @@ const deleteProject = async (req, res) => {
 	try {
 		const { ProjectName } = req.params;
 
-		await DB.exec('deleteProject', { ProjectName: ProjectName });
-
-		res.status(200).json({ message: 'Project deleted successfully' });
+		if (!ProjectName) {
+			res.status(404).json({ error: 'Project not found' });
+		} else {
+			const deleteResult = await DB.exec('deleteProject', { ProjectName });
+			if (deleteResult.recordset[0].Message === 'Project deleted successfully') {
+				res.status(200).json({ message: 'Project deleted successfully' });
+			} else {
+				res.status(404).json({ error: 'Project not found' });
+			}
+		}
 	} catch (error) {
 		console.error('An error occurred:', error.message);
 		return res.status(500).json({ error: 'Oops, project deletion failed' });

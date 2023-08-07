@@ -7,5 +7,3 @@ CREATE TABLE Users (
     isAdmin BIT DEFAULT 0
 );
 
-
-
