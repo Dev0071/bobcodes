@@ -1,7 +1,6 @@
 
 
 -- SELECT * FROM Projects
-
 CREATE TABLE Projects (
     ProjectID UNIQUEIDENTIFIER PRIMARY KEY,
     Name NVARCHAR(255) NOT NULL,

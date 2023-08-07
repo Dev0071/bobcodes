@@ -3,11 +3,11 @@ const userJsonString = localStorage.getItem("user");
 const user = JSON.parse(userJsonString);
 const adminSection = document.getElementById('admin-section');
 const userSection = document.getElementById('user-section')
-const createProjectForm = document.getElementById('create-poject-form');
+const createProjectForm = document.getElementById('create-project-form');
 
 document.addEventListener("DOMContentLoaded", () => {
     if (!token) {
-        // Redirect to the login page if the token is not present.
+
         window.location.href = "login.html";
     } else {
 
@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
             userSection.style.display = 'none'
             adminSection.style.display = 'block'
 
-            allApiCalls()
 
         } else {
             userSection.style.display = 'block'
@@ -25,11 +24,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     }
+
+    allApiCalls()
 });
 
 createProjectForm.addEventListener('submit', async (event) => {
     event.preventDefault();
-    createProject()
+    await createProject();
 })
 
 async function allApiCalls() {
@@ -80,6 +81,11 @@ function populateCompleteProjects(projects) {
 
 
         allProjectsContainer.appendChild(projectElement)
+
+        projectElement.addEventListener('click', () => {
+            // Redirect to projectdetails.html with the project ID as a query parameter
+            window.location.href = `projectdetails.html?projectId=${project.ProjectID}`;
+        });
     })
 }
 
@@ -111,6 +117,12 @@ function populateIncompleteProjects(projects) {
 
 
         allProjectsContainer.appendChild(projectElement)
+
+
+        projectElement.addEventListener('click', () => {
+            // Redirect to projectdetails.html with the project ID as a query parameter
+            window.location.href = `projectdetails.html?projectId=${project.ProjectID}`;
+        });
     })
 }
 
@@ -141,6 +153,10 @@ function populateAllProjects(projects) {
         completionStatusElement.textContent = `Status: ${project.IsComplete ? 'Complete' : 'Incomplete'}`;
         projectElement.append(completionStatusElement);
 
+        projectElement.addEventListener('click', () => {
+            // Redirect to projectdetails.html with the project ID as a query parameter
+            window.location.href = `projectdetails.html?projectId=${project.ProjectID}`;
+        });
 
         allProjectsContainer.appendChild(projectElement)
     })
