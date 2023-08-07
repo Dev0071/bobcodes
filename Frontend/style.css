@@ -41,10 +41,11 @@ body {
 
 nav {
   display: flex;
+  padding: 1rem;
   flex-direction: column;
-  justify-content: space-evenly;
+  justify-content: space-between;
   background-color: var(--orange);
-  width: 10%;
+  /* width: 10%; */
   font-size: 18px;
   border-radius: 5px;
 }
@@ -53,7 +54,14 @@ nav ul {
   display: flex;
   flex-direction: column;
   list-style: none;
-  margin-left: 2%;
+  gap: 0.5rem;
+  /* margin-left: 2%; */
+}
+
+nav ul li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
 }
 
 nav ul li:hover {
@@ -176,12 +184,13 @@ form input {
 
 .log-out {
   display: flex;
-  justify-content: space-between;
+  /* justify-content: center; */
   align-items: center;
-  padding-right: 10px;
-  color: var(--orange);
-  height: 10%;
+  /* padding-right: 10px; */
+  /* color: var(--orange); */
+  /* height: 10%; */
   /* background-color: blue; */
+  gap: 0.5rem;
 }
 
 .admin-nav {
@@ -214,8 +223,9 @@ form input {
 
 .team {
   /* background-color: black; */
-  height: 28%;
+  /* height: 28%; */
   z-index: 1;
+  padding: 0.3rem;
 }
 
 .tasks {
@@ -311,7 +321,7 @@ div.team {
 
 .team-member:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
 }
 
 /* Center the form */
@@ -440,7 +450,7 @@ div.team {
 
 .project:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transform: translateY(-2px);
+  /* transform: translateY(-2px); */
 }
 
 .project-description-class {
