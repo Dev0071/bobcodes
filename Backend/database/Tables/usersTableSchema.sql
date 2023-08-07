@@ -7,3 +7,4 @@ CREATE TABLE Users (
     isAdmin BIT DEFAULT 0
 );
 
+select * from Users

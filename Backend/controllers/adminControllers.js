@@ -13,7 +13,7 @@ const createProject = async (req, res) => {
 
 		await DB.exec('CreateProject', { ProjectID, Name, Description, EndDate });
 
-		console.log('random id', ProjectID)
+		console.log('random id', ProjectID);
 		res.status(200).json({ message: 'Project created successfully' });
 	} catch (error) {
 		console.error('An error occurred:', error.message);
@@ -116,8 +116,28 @@ const deleteProject = async (req, res) => {
 		}
 	} catch (error) {
 		console.error('An error occurred:', error.message);
+		console.log('end to delete');
+
 		return res.status(500).json({ error: 'Oops, project deletion failed' });
 	}
 };
 
-module.exports = { assignProject, createProject, getAllProjects, deleteProject, getProjectByID };
+const getUnassignedUsers = async (req, res) => {
+	try {
+		const unassignedUsers = await DB.query(
+			`SELECT * FROM Users WHERE UserID NOT IN (SELECT UserID FROM UserProjects)`,
+		);
+		res.status(200).json(unassignedUsers.recordset);
+	} catch (error) {
+		console.error('Error fetching unassigned users:', error.message);
+		res.status(500).json({ error: 'Failed to fetch unassigned users' });
+	}
+};
+
+module.exports = {
+	assignProject,
+	createProject,
+	getAllProjects,
+	deleteProject, getProjectByID,
+	getUnassignedUsers,
+};
