@@ -90,40 +90,56 @@ function populateCompleteProjects(projects) {
 }
 
 function populateIncompleteProjects(projects) {
-    const allProjectsContainer = document.getElementById('incomplete-projects')
+    const incompleteProjectsContainer = document.getElementById('incomplete-projects');
 
     projects.forEach((project) => {
         const projectElement = document.createElement('div');
-        projectElement.classList.add('project')
+        projectElement.classList.add('project');
 
-        const titleElement = document.createElement('h4')
-        titleElement.textContent = project.Name
-        projectElement.append(titleElement)
+        // Title
+        const titleHeader = document.createElement('h4');
+        titleHeader.textContent = 'Title:';
+        projectElement.appendChild(titleHeader);
 
-        const descriptionElement = document.createElement('p')
-        descriptionElement.classList.add('project-description-class')
-        descriptionElement.textContent = project.Description
-        projectElement.append(descriptionElement)
+        const titleElement = document.createElement('p');
+        titleElement.textContent = project.Name;
+        projectElement.appendChild(titleElement);
 
-        let rawDate = project.EndDate
-        let formattedDate = formatDate(rawDate)
-        const endDateElement = document.createElement('p')
-        endDateElement.textContent = formattedDate
-        projectElement.append(endDateElement)
+        // Description
+        const descriptionHeader = document.createElement('h4');
+        descriptionHeader.textContent = 'Description:';
+        projectElement.appendChild(descriptionHeader);
 
-        const completionStatusElement = document.createElement('p')
-        completionStatusElement.textContent = project.IsComplete
-        projectElement.append(completionStatusElement)
+        const descriptionElement = document.createElement('p');
+        descriptionElement.classList.add('project-description-class');
+        descriptionElement.textContent = project.Description;
+        projectElement.appendChild(descriptionElement);
 
+        // Completion Date
+        const completionDateHeader = document.createElement('h4');
+        completionDateHeader.textContent = 'Completion Date:';
+        projectElement.appendChild(completionDateHeader);
 
-        allProjectsContainer.appendChild(projectElement)
+        const formattedDate = formatDate(project.EndDate);
+        const endDateElement = document.createElement('p');
+        endDateElement.textContent = formattedDate;
+        projectElement.appendChild(endDateElement);
 
+        // Status
+        const statusHeader = document.createElement('h4');
+        statusHeader.textContent = 'Status:';
+        projectElement.appendChild(statusHeader);
+
+        const completionStatusElement = document.createElement('p');
+        completionStatusElement.textContent = 'Incomplete';
+        projectElement.appendChild(completionStatusElement);
 
         projectElement.addEventListener('click', () => {
-            // Redirect to projectdetails.html with the project ID as a query parameter
+
             window.location.href = `projectdetails.html?projectId=${project.ProjectID}`;
         });
-    })
+        incompleteProjectsContainer.appendChild(projectElement);
+    });
 }
 
 function populateAllProjects(projects) {
@@ -133,34 +149,48 @@ function populateAllProjects(projects) {
         const projectElement = document.createElement('div');
         projectElement.classList.add('project')
 
-
         const titleElement = document.createElement('h4');
-        titleElement.textContent = project.Name;
-        projectElement.append(titleElement);
+        titleElement.textContent = 'Title:';
+        projectElement.appendChild(titleElement);
 
-        const descriptionElement = document.createElement('p');
-        descriptionElement.classList.add('project-description-class');
-        descriptionElement.textContent = project.Description;
-        projectElement.append(descriptionElement);
+        const titleContentElement = document.createElement('p');
+        titleContentElement.textContent = project.Name;
+        projectElement.appendChild(titleContentElement);
 
-        let rawDate = project.EndDate;
-        let formattedDate = formatDate(rawDate);
-        const endDateElement = document.createElement('p');
-        endDateElement.textContent = `Completion Date: ${formattedDate}`;
-        projectElement.append(endDateElement);
+        const descriptionElement = document.createElement('h4');
+        descriptionElement.textContent = 'Description:';
+        projectElement.appendChild(descriptionElement);
 
-        const completionStatusElement = document.createElement('p');
-        completionStatusElement.textContent = `Status: ${project.IsComplete ? 'Complete' : 'Incomplete'}`;
-        projectElement.append(completionStatusElement);
+        const descriptionContentElement = document.createElement('p');
+        descriptionContentElement.classList.add('project-description-class');
+        descriptionContentElement.textContent = project.Description;
+        descriptionContentElement.style = 'margin-top:15px; margin-bottom:15px;'
+        projectElement.appendChild(descriptionContentElement);
+
+        
+
+        const formattedDate = formatDate(project.EndDate);
+        const completionDateContentElement = document.createElement('p');
+        completionDateContentElement.textContent = `Completion Date: ${formattedDate}`;
+        projectElement.appendChild(completionDateContentElement);
+
+        const statusElement = document.createElement('h4');
+        statusElement.textContent = 'Status:';
+        projectElement.appendChild(statusElement);
+
+        const statusContentElement = document.createElement('p');
+        statusContentElement.textContent = `Status: ${project.IsComplete ? 'Complete' : 'Incomplete'}`;
+        projectElement.appendChild(statusContentElement);
+
+        allProjectsContainer.appendChild(projectElement);
 
         projectElement.addEventListener('click', () => {
             // Redirect to projectdetails.html with the project ID as a query parameter
             window.location.href = `projectdetails.html?projectId=${project.ProjectID}`;
         });
-
-        allProjectsContainer.appendChild(projectElement)
     })
 }
+
 function populateTeamMembers(teamMembers) {
     const teamMembersContainer = document.getElementById('team');
     teamMembers.forEach((member) => {

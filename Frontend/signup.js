@@ -39,7 +39,7 @@ signUpForm.addEventListener("submit", async (event) => {
         headers: {
             "Content-type": "application/json"
         },
-        body: JSON.stringify({Username: username, Email: email, Password: password})
+        body: JSON.stringify({Username: username, Email: email, Password: password, IsAssigned: 0})
     })
 
     if(response.ok){

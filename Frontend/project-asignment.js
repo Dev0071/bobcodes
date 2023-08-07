@@ -1,5 +1,6 @@
 const urlParams = new URLSearchParams(window.location.search);
 const projectId = urlParams.get('projectId');
+let projectTitle;
 
 async function fetchProjectDetails() {
     try {
@@ -15,10 +16,11 @@ async function fetchProjectDetails() {
         const projectDescription = document.querySelector('#project-description');
         const projectEndDate = document.querySelector('#project-end-date');
         const completionStatus = document.querySelector('.completion-status');
-        
+
         let parsedDate = formatDate(projectDetails.EndDate)
         projectIdElement.textContent = `Project ID: ${projectDetails.ProjectID}`;
         projectName.textContent = `Name: ${projectDetails.Name}`;
+        projectTitle = projectDetails.Name
         projectDescription.textContent = `Description: ${projectDetails.Description}`;
         projectEndDate.textContent = `End Date: ${parsedDate}`;
         completionStatus.textContent = `Status: ${projectDetails.IsComplete ? 'Complete' : 'Incomplete'}`;
@@ -53,7 +55,7 @@ function populateUserList(users) {
         userCard.classList.add('user-card');
 
         const avatar = document.createElement('img');
-        avatar.src =  "/Frontend/images/avatar.png"; 
+        avatar.src = "/Frontend/images/avatar.png";
         userCard.appendChild(avatar);
 
         const name = document.createElement('p');
@@ -66,11 +68,53 @@ function populateUserList(users) {
 
         const checkbox = document.createElement('input');
         checkbox.type = 'checkbox';
+
+        checkbox.dataset.userId = user.UserID;
+        checkbox.dataset.userName = user.Username
+        checkbox.addEventListener('change', handleCheckboxChange);
         userCard.appendChild(checkbox);
 
         userListContainer.appendChild(userCard);
     });
 }
+
+async function handleCheckboxChange(event) {
+    const userId = event.target.dataset.userId;
+    const isChecked = event.target.checked;
+
+    const { userName } = event.target.dataset; // Destructuring the userName from the dataset
+
+    if (!userName) {
+        console.error('Username is missing');
+        return;
+    }
+
+    try {
+        const response = await fetch(`http://localhost:9500/api/admin/assign/`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                UserID: userId,
+                projectId: projectId,
+                UserName: userName, // Use the extracted userName
+                ProjectName: projectTitle
+            })
+        });
+
+        if (!response.ok) {
+            console.log('Error updating user status');
+            return;
+        }
+
+        console.log(`User ${userId} status updated to ${isChecked ? 'assigned' : 'unassigned'}`);
+    } catch (error) {
+        console.error('An error occurred:', error);
+    }
+}
+
+
 fetchProjectDetails();
 fetchUnassignedUsers();
 function formatDate(inputDate) {
@@ -88,3 +132,4 @@ function formatDate(inputDate) {
 
     return formattedDate;
 }
+

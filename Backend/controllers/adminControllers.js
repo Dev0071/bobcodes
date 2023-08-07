@@ -141,6 +141,7 @@ module.exports = {
 	assignProject,
 	createProject,
 	getAllProjects,
-	deleteProject, getProjectByID,
+	deleteProject,
+	getProjectByID,
 	getUnassignedUsers,
 };

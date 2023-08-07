@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-        
+
     <title>Project Management</title>
     <style>
         body {
@@ -64,16 +64,16 @@
             <div class="form-popup" id="myForm">
                 <form class="form-container" id="create-project-form">
                   <h1>New Project</h1>
-              
+
                   <label for="project-name"><b>Project Name</b></label>
                   <input type="text" placeholder="Enter the project's name" id="new-project-name" required>
-              
+
                   <label for="project-description"><b>Project Description</b></label>
                   <input type="text" placeholder="Enter the project's description" id="new-project-description" required>
-              
+
                   <label for="end-date"><b>Expected End Date</b></label>
                   <input type="date" name="psw" id="new-project-completion-date" required>
-              
+
 
                   <button type="submit" class="btn">Submit</button>
                   <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
@@ -96,12 +96,20 @@
                 </div>
             </div>
             <h3 style="text-align: center;">Team Members</h3>
+
             <div class="team" id="team">
 
             </div>
+
+            <div  id="headings">
+                <p>Complete Projects</p>
+                <p>Incomplete Projects</p>
+                <p>Complete Projects</p>
+            </div>
             <div class="tasks">
+
                 <div class="project-time" id="all-projects" >
-                   
+
                 </div>
                 <hr>
                 <div class="ongoing-prject">

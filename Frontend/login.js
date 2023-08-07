@@ -30,20 +30,17 @@ loginForm.addEventListener('submit', async (event) => {
             });
 
             if (!userDetailsResponse.ok) {
-                // Handle error if fetching user details fails
                 throw new Error("Failed to fetch user details.");
             }
 
             const userDetails = await userDetailsResponse.json();
 
-            // Update the isAdmin status in the payload based on the API response
             decodedToken.isAdmin = userDetails.isAdmin;
 
-            // Create a user object with the updated payload data to store in localStorage
             const user = {
                 userId: decodedToken.UserID,
                 username: decodedToken.Username,
-                isAdministrator: decodedToken.isAdmin // Use the updated isAdmin value from the decodedToken
+                isAdministrator: decodedToken.isAdmin
             };
 
             // Save the user object in localStorage
