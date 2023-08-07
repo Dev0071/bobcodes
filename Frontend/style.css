@@ -231,6 +231,7 @@ form input {
 /*  color: white;*/
 /*}*/
 
+
 @media screen and (max-width: 1120px) {
   * {
     font-size: 0.9rem;
@@ -412,3 +413,4 @@ div.team {
   flex-direction: row;
   justify-content: space-evenly;
 }
+

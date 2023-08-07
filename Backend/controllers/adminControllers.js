@@ -68,7 +68,7 @@ const assignProject = async (req, res) => {
 
 		if (existingAssignment.recordset.length === 0) {
 			await DB.exec('AssignProjectToUser', {
-				UserProjectID,
+
 				UserID,
 				Username,
 				ProjectID,

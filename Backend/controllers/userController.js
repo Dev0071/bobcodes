@@ -27,8 +27,6 @@ const getAllUsers = async (req, res) => {
 const loginUser = async (req, res) => {
     try {
         const {Email, Password} = req.body;
-
-        // Call the stored procedure with the correct argument (Email only)
         const user = await DB.exec('userLoginProcedure', {Email});
 
         if (user.recordset.length === 0) {
@@ -106,26 +104,27 @@ const registerUser = async (req, res) => {
         });
     }
 };
-const getUserProjects = async (req, res) => {
+const getUsersUnderProject = async (req, res) => {
     try {
-        const {UserID} = req.params; // Assuming you will pass the UserID as a parameter in the request URL
+        const { ProjectID } = req.params;
 
-        const userProjects = await DB.exec('GetUserProjects', {UserID});
+        const userProjects = await DB.exec('GetUsersUnderProject', { ProjectID }); // Replace 'GetUsersUnderProject' with the actual stored procedure name
 
         if (userProjects.recordset.length > 0) {
             return res.status(200).json(userProjects.recordset);
         } else {
-            return res.status(404).json({message: 'No projects found for the user'});
+            return res.status(404).json({ message: 'No users found under the project' });
         }
     } catch (e) {
         console.log(e.message);
-        return res.status(500).json({error: 'An error occurred while fetching projects'});
+        return res.status(500).json({ error: 'An error occurred while fetching users under the project' });
     }
 };
 
+
 const updateProjectStatus = async (req, res) => {
     try {
-        const { ProjectID } = req.params; // Assuming you will pass the ProjectID as a parameter in the request URL
+        const { ProjectID } = req.params;
 
 
         await DB.exec('updateProjectStatusProcedure', { ProjectID });
@@ -180,7 +179,7 @@ module.exports = {
     registerUser,
     getAllUsers,
     loginUser,
-    getUserProjects,
+   getUsersUnderProject,
     updateProjectStatus,
     getASingleUser
 };

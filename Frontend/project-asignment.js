@@ -11,6 +11,7 @@ async function fetchProjectDetails() {
         const projectDetails = await response.json();
 
 
+
         const projectIdElement = document.querySelector('#project-id');
         const projectName = document.querySelector('#project-name');
         const projectDescription = document.querySelector('#project-description');
@@ -25,17 +26,42 @@ async function fetchProjectDetails() {
         projectEndDate.textContent = `End Date: ${parsedDate}`;
         completionStatus.textContent = `Status: ${projectDetails.IsComplete ? 'Complete' : 'Incomplete'}`;
 
+
+        if (projectDetails.IsComplete) {
+            fetchUsersUnderProject();
+        } else {
+
+            fetchUnassignedUsers();
+        }
     } catch (error) {
         console.log(error.message);
     }
 }
 
+async function fetchUsersUnderProject(){
+//   12F270BF-E797-44D7-A538-47C791A927B1
 
+    try {
+        const usersResponse = await  fetch(`http://localhost:9500/users/projects/user/${projectId}`, {
+            method: "GET"
+        })
+        const users = await usersResponse.json();
+        console.log(users, 'eeeeee')
+    }catch (e) {
+        console.log(e.message)
+    }
+
+
+}
 async function fetchUnassignedUsers() {
     try {
         const response = await fetch('http://localhost:9500/api/admin/unassigned', {
             method: "GET"
         });
+
+
+        const  users = await  response.json()
+        console.log("unassigned users", users)
 
         if (response.ok) {
             const users = await response.json();
@@ -47,6 +73,7 @@ async function fetchUnassignedUsers() {
         console.log(error.message);
     }
 }
+
 function populateUserList(users) {
     const userListContainer = document.getElementById('user-list');
 
@@ -71,6 +98,8 @@ function populateUserList(users) {
 
         checkbox.dataset.userId = user.UserID;
         checkbox.dataset.userName = user.Username
+        console.log(checkbox.dataset.userId = user.UserID,
+            checkbox.dataset.userName = user.Username)
         checkbox.addEventListener('change', handleCheckboxChange);
         userCard.appendChild(checkbox);
 
@@ -82,7 +111,7 @@ async function handleCheckboxChange(event) {
     const userId = event.target.dataset.userId;
     const isChecked = event.target.checked;
 
-    const { userName } = event.target.dataset; // Destructuring the userName from the dataset
+    const {userName} = event.target.dataset; // Destructuring the userName from the dataset
 
     if (!userName) {
         console.error('Username is missing');
@@ -98,7 +127,7 @@ async function handleCheckboxChange(event) {
             body: JSON.stringify({
                 UserID: userId,
                 projectId: projectId,
-                UserName: userName, // Use the extracted userName
+                UserName: userName,
                 ProjectName: projectTitle
             })
         });
@@ -108,7 +137,7 @@ async function handleCheckboxChange(event) {
             return;
         }
 
-        console.log(`User ${userId} status updated to ${isChecked ? 'assigned' : 'unassigned'}`);
+
     } catch (error) {
         console.error('An error occurred:', error);
     }
@@ -116,7 +145,7 @@ async function handleCheckboxChange(event) {
 
 
 fetchProjectDetails();
-fetchUnassignedUsers();
+
 function formatDate(inputDate) {
 
     const date = new Date(inputDate);
