@@ -128,7 +128,7 @@ const deleteProject = async (req, res) => {
 const getUnassignedUsers = async (req, res) => {
 	try {
 		const unassignedUsers = await DB.query(
-			`SELECT UserID, Username, Email FROM Users WHERE IsAssigned = 1`,
+			`SELECT UserID, Username, Email FROM Users WHERE IsAssigned = 0`,
 		);
 		res.status(200).json(unassignedUsers.recordset);
 	} catch (error) {
