@@ -75,3 +75,4 @@ function showSnackBar() {
     x.className = x.className.replace("show", "");
   }, 6000); 
 }
+
