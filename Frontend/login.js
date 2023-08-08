@@ -26,18 +26,8 @@ loginForm.addEventListener('submit', async event => {
 			// Fetch user details using the user ID from the payload
 			const userId = decodedToken.UserID;
 			console.log(userId);
-			async function fetchUserProjects(userId) {
-				try {
-					console.log('called');
-					const response = await fetch(`http://localhost:9500/users/projects/user/${userId}`);
-					const userProjects = await response.json();
-					console.log(userProjects);
-				} catch (error) {
-					console.error('Error fetching user projects:', error.message);
-				}
-			}
-			fetchUserProjects(userId);
-
+			console.log('called');
+			const project = await fetchUserProjects(userId);
 			const userDetailsResponse = await fetch(`http://localhost:9500/users/user/${userId}`, {
 				method: 'GET',
 			});
@@ -60,9 +50,39 @@ loginForm.addEventListener('submit', async event => {
 			localStorage.setItem('user', JSON.stringify(user));
 
 			window.location.href = 'index.html';
-
-			// const project = fetchUserProjects(userId);
+			async function fetchUserProjects(userId) {
+				try {
+					console.log('called');
+					const response = await fetch(`http://localhost:9500/users/projects/${userId}`);
+					const userProjects = await response.json();
+					return userProjects;
+				} catch (error) {
+					console.error('Error fetching user projects:', error.message);
+				}
+			}
 			// console.log(project);
+			// const projectDiv = document.querySelector('#projects-div');
+			// project.forEach(
+			// 	project => {
+			// 		// projectDiv.innerHTML = '';
+			// 		console.log('called');
+			// 		const projectTem = `
+			// 	<div class="project">
+			// 		<h5>${project.ProjectName}</h5>
+			// 		<p>${project.ProjectDescription}</p>
+			// 		<p>due date: ${project.ProjectEndDate}</p>
+			// 		<div>
+			// 			<input type="checkbox" name="" id="">
+			// 			<label>mark as complete</label>
+			// 		</div>
+			// 	</div>`;
+			// 		console.log('hey');
+			// 		projectDiv.innerHTML = projectTem;
+			// 	},
+
+			// 	// const project = fetchUserProjects(userId);
+			// 	// console.log(project);
+			// );
 		} else {
 			const errorResponse = await response.json();
 			const errorMessage = errorResponse.message;

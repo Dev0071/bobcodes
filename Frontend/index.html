@@ -47,9 +47,11 @@
         <section class="user" id="user-section">
             <div class="user-nav">
                 <div class="today" style="width: 45%; justify-content: flex-start;">
-                    <p>Today,<span id="date-time"></span></p>
-                    <input type="text" placeholder="Searching for..."
-                        style="width: 90%; border-radius: 5px; padding: 3px; margin-top: 10px;">
+                    <p>
+                    <p id="date-time"></p>
+                    </p>
+                    <!-- <input type="text" placeholder="Searching for..."
+                        style="width: 90%; border-radius: 5px; padding: 3px; margin-top: 10px;"> -->
                 </div>
                 <div class="logouticon">
                     <span id="acc-icon" class="material-symbols-outlined">account_circle </span>
@@ -57,21 +59,31 @@
                 </div>
             </div>
             <div class="recent-projects">
-                <p>Recent projects</p>
-                <div class="project">
-                    <h5>project Title</h5>
-                    <p>project Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, doloremque.</p>
-                    <p>due date: 24/09/2023</p>
+                <h3 style="font-weight: 700; font-size: larger;">Recent projects</h3>
+                <div id="projects-div">
+                    <p
+                        style="background-color: blanchedalmond; max-width: 530px; padding: 0.5rem; border-radius: 8px; margin-top: 0.6rem;">
+                        ops!! you'll get a
+                        notification email
+                        once assigned to
+                        a
+                        project.</p>
+                    <!-- <div class="project">
+                        <h5>project Title</h5>
+                        <p>project Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum, doloremque.</p>
+                        <p>due date: 24/09/2023</p>
 
-                    <div>
-                        <input type="checkbox" name="" id="">
-                        <label>mark as complete</label>
-                    </div>
+                        <div>
+                            <input type="checkbox" name="" id="">
+                            <label>mark as complete</label>
+                        </div>
+                    </div> -->
                 </div>
             </div>
             <div class="reminder">
-                <p>Reminders</p>
-                <p id="greeting"></p>
+                <h3 style="font-weight: 700; font-size: larger;">Reminders</h3>
+                <p id="reminder">No reminders
+                </p>
             </div>
         </section>
         <section class="admin" id="admin-section">
