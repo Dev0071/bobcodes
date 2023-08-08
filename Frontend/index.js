@@ -1,3 +1,5 @@
+// const { log } = require('console');
+
 const token = localStorage.getItem('authToken');
 const userJsonString = localStorage.getItem('user');
 const user = JSON.parse(userJsonString);
@@ -23,17 +25,72 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const userId = user.userId;
+console.log(user);
 
-async function fetchUserProjects(userId) {
-	try {
-		console.log('called');
-		const response = await fetch(`http://localhost:9500/users/projects/user/${userId}`);
-		const userProjects = await response.json();
-		console.log(userProjects);
-	} catch (error) {
-		console.error('Error fetching user projects:', error.message);
+if (user && !user.isAdministrator) {
+	const helloUser = document.querySelector('.logouticon');
+	helloUser.innerHTML = `<span id="acc-icon" class="material-symbols-outlined">account_circle </span>
+                    <p>Hello, ${user.username}</p>`;
+
+	const currentDayElement = document.getElementById('date-time');
+	const currentDateElement = document.getElementById('current-date');
+	const currentTimeElement = document.getElementById('current-time');
+	const newdate = new Date();
+	const daysOfWeek = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+	const currentDay = daysOfWeek[newdate.getDay()];
+	const options = { year: 'numeric', month: 'long', day: 'numeric' };
+	const currentDateFormatted = newdate.toLocaleDateString(undefined, options);
+	const currentTimeFormatted = newdate.toLocaleTimeString();
+	currentDayElement.innerHTML = `<p> <p>${currentDay},</p> <p>${currentDateFormatted}</p></p>`;
+	const projectDiv = document.querySelector('#projects-div');
+	async function fetchUserProjects(userId) {
+		try {
+			console.log('called');
+			const response = await fetch(`http://localhost:9500/users/projects/${userId}`);
+			const userProjects = await response.json();
+			const { ProjectID, ProjectName, ProjectDescription, ProjectEndDate } = userProjects[0];
+
+			const newdate = new Date();
+			const duedate = new Date(ProjectEndDate);
+			const timeDifference = duedate - newdate;
+			const days = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
+			projectDiv.innerHTML = `   <div class="project">
+                    <h5>${ProjectName}</h5>
+                    <p>${ProjectDescription}</p>
+                    <p>due in ${days} days</p>
+
+                    <div>
+                        <button class='complete' id='${ProjectID}'>mark complete</button>
+                    </div>
+                </div>`;
+			const button = document.querySelector('.complete');
+			button.addEventListener('click', async () => {
+				const ProjectID = button.id;
+				await markProjectComplete(ProjectID);
+				button.textContent = `project Completed`;
+			});
+			const reminders = document.querySelector('#reminder');
+			reminders.innerHTML = `<div id="Onereminder"> <p>Your project  ${ProjectName} is due in ${days}days.</p></div>`;
+		} catch (error) {
+			console.error('Error fetching user projects:', error.message);
+		}
 	}
+	fetchUserProjects(userId);
 }
+
+const markProjectComplete = async ProjectID => {
+	try {
+		const response = await fetch(
+			`http://localhost:9500/users/projects/mark-complete/${ProjectID}`,
+			{
+				method: 'POST',
+			},
+		);
+		const message = await response.json();
+		// console.log(message);
+		return message;
+	} catch (error) {}
+};
 
 createProjectForm.addEventListener('submit', async event => {
 	event.preventDefault();
@@ -124,7 +181,6 @@ function populateIncompleteProjects(projects) {
 
 		allProjectsContainer.appendChild(projectElement);
 
-
 		projectElement.addEventListener('click', () => {
 			// Redirect to projectdetails.html with the project ID as a query parameter
 			window.location.href = `projectdetails.html?projectId=${project.ProjectID}`;
@@ -137,10 +193,10 @@ function populateAllProjects(projects) {
 
 	projects.forEach((project, index) => {
 		const projectElement = document.createElement('div');
-        projectElement.classList.add('project');
-        if (index === 0) {
-            projectElement.style.marginTop = '220px';
-        }
+		projectElement.classList.add('project');
+		if (index === 0) {
+			projectElement.style.marginTop = '220px';
+		}
 		const titleElement = document.createElement('h4');
 		titleElement.textContent = project.Name;
 		projectElement.append(titleElement);
