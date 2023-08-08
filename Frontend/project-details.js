@@ -15,12 +15,13 @@ async function fetchProjectDetails() {
         const projectEndDate = document.querySelector('#project-end-date');
         const completionStatus = document.querySelector('.completion-status');
 
+        
         let parsedDate = formatDate(projectDetails.EndDate)
-        projectIdElement.textContent = `Project ID: ${projectDetails.ProjectID}`;
-        projectName.textContent = `Name: ${projectDetails.Name}`;
+        projectIdElement.innerHTML = `<strong> Project ID: </strong>${projectDetails.ProjectID}`;
+        projectName.innerHTML = `<strong> Project Name: </strong> ${projectDetails.Name}`;
         projectTitle = projectDetails.Name
-        projectDescription.textContent = `Description: ${projectDetails.Description}`;
-        projectEndDate.textContent = `End Date: ${parsedDate}`;
+        projectDescription.innerHTML = `<strong> Description:  </strong>${projectDetails.Description}`;
+        projectEndDate.innerHTML = `<strong> End Date: </strong> ${parsedDate}`;
         completionStatus.textContent = `${projectDetails.IsComplete ? 'Complete' : 'Incomplete'}`;
 
 
