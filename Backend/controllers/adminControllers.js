@@ -56,7 +56,6 @@ const getAllProjects = async (req, res) => {
 		return res.status(500).json({ error: 'Oops, something went wrong' });
 	}
 };
-
 const assignProject = async (req, res) => {
 	try {
 		const UserProjectID = uuidv4();

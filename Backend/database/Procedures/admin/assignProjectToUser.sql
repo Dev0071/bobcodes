@@ -1,3 +1,6 @@
+use groupWork;
+
+
 CREATE OR ALTER PROCEDURE AssignProjectToUser
     @UserProjectID UNIQUEIDENTIFIER,
     @UserID NVARCHAR(255),

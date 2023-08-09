@@ -20,6 +20,7 @@ async function fetchProjectDetails() {
         projectIdElement.innerHTML = `<strong> Project ID: </strong>${projectDetails.ProjectID}`;
         projectName.innerHTML = `<strong> Project Name: </strong> ${projectDetails.Name}`;
         projectTitle = projectDetails.Name
+        console.log(`${projectTitle}`, 'project titlllll')
         projectDescription.innerHTML = `<strong> Description:  </strong>${projectDetails.Description}`;
         projectEndDate.innerHTML = `<strong> End Date: </strong> ${parsedDate}`;
         completionStatus.textContent = `${projectDetails.IsComplete ? 'Complete' : 'Incomplete'}`;
@@ -88,13 +89,14 @@ async function handleCheckboxChange(event) {
             },
             body: JSON.stringify({
                 UserID: userId,
-                projectId: projectId,
-                UserName: userName,
+                ProjectID: projectId,
+                Username: userName,
                 ProjectName: projectTitle
             })
         });
 
         if (!response.ok) {
+            console.log(projectTitle, "dbkjsbdjsbdskjbdjskjbdsj");
             console.log('Error updating user status');
             return;
         }
