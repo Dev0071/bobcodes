@@ -160,8 +160,6 @@ const getASingleUser = async (req, res) => {
 	try {
 		const { userID } = req.params;
 
-		console.log(userID);
-		console.log('req.params:', req.params);
 		const user = await DB.exec('GetUserByID', { UserID: userID });
 
 		if (user.recordset.length === 0) {
@@ -170,7 +168,7 @@ const getASingleUser = async (req, res) => {
 
 		return res.status(200).json(user.recordset[0]);
 	} catch (e) {
-		console.error(e.message);
+		console.log(e.message);
 		return res.status(500).json({ error: 'An error occurred while fetching the user' });
 	}
 };
