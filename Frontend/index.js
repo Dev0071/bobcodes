@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 const userId = user.userId;
-console.log(user);
+// console.log(user);
 
 if (user && !user.isAdministrator) {
 	const helloUser = document.querySelector('.logouticon');
@@ -74,20 +74,22 @@ if (user && !user.isAdministrator) {
 			const reminders = document.querySelector('#reminder');
 			reminders.innerHTML = `<div id="Onereminder"> <p>Your project  ${ProjectName} is due in ${days}days.</p></div>`;
 
-			button.addEventListener('click', async () => {
-				const ProjectID = button.id;
-				await markProjectComplete(ProjectID);
-				if (iscomplete) {
-					button.classList.add('disabled');
-					button.disabled = true;
-					reminders.innerHTML = ` <p
+			if (iscomplete) {
+				button.classList.add('disabled');
+				reminders.innerHTML = ` <p
                         style="background-color: blanchedalmond; max-width: 530px; padding: 0.5rem; border-radius: 8px;">
                         ops!! you'll get a
                         notification email
                         once assigned to
                         a
                         project.</p>`;
-				}
+			}
+
+			button.addEventListener('click', async () => {
+				const ProjectID = button.id;
+				await markProjectComplete(ProjectID);
+				button.disabled = true;
+				button.classList.add('disabled');
 			});
 		} catch (error) {
 			console.error('Error fetching user projects:', error.message);
