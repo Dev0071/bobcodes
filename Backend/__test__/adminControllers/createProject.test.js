@@ -10,7 +10,7 @@ const { sendMail } = require('../../EmailServices/email.js');
 jest.mock('../../database/helpers/index.js');
 jest.mock('../../EmailServices/email.js');
 
-describe('creating a roject', () => {
+describe('creating a project', () => {
 	const req = {
 		body: { Name: 'fakeproject', Description: 'udigiydyelE', EndDate: '2023-09-12' },
 	};
