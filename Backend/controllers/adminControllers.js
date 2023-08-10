@@ -6,6 +6,10 @@ const createProject = async (req, res) => {
 	try {
 		const { Name, Description, EndDate } = req.body;
 		const ProjectID = uuidv4();
+
+		if (!Name || !Description || !EndDate) {
+			return res.status(400).json({ error: 'One or more required fields are missing' });
+		}
 		const existingProject = await DB.exec('getProjectsByName', { Name });
 		if (existingProject.recordset.length) {
 			return res.status(409).json({ error: 'Project with the same name already exists' });
@@ -13,7 +17,6 @@ const createProject = async (req, res) => {
 
 		await DB.exec('CreateProject', { ProjectID, Name, Description, EndDate });
 
-		console.log('random id', ProjectID);
 		res.status(200).json({ message: 'Project created successfully' });
 	} catch (error) {
 		console.error('An error occurred:', error.message);
@@ -31,15 +34,15 @@ const getProjectByID = async (req, res) => {
 
 		const projectResult = await DB.exec('getProjectByID', { ProjectID });
 
-		if (!projectResult || projectResult.recordset.length === 0) {
-			return res.status(404).json({ error: 'Project not found' });
+		if (projectResult.recordset.length === 0) {
+			return res.status(403).json({ error: 'Project not found' });
+		} else {
+			const project = projectResult?.recordset[0];
+			return res.status(200).json(project);
 		}
-
-		const project = projectResult.recordset[0];
-		return res.status(200).json(project);
 	} catch (error) {
 		console.error('An error occurred:', error.message);
-		return res.status(500).json({ error: 'Oops, something went wrong while fetching the project' });
+		return res.status(404).json({ error: 'Project not found' });
 	}
 };
 
@@ -61,9 +64,12 @@ const assignProject = async (req, res) => {
 		const UserProjectID = uuidv4();
 		const { UserID, ProjectID, Username, ProjectName } = req.body;
 
-		const existingAssignment = await DB.exec('checkUserAssignment', { UserID });
+		if (!UserID || !ProjectID || !Username || !ProjectName) {
+			return res.status(400).json({ error: 'One or more required fields are missing' });
+		}
 
-		if (existingAssignment.recordset.length === 0) {
+		const existingAssignment = await DB.exec('checkUserAssignment', { UserID });
+		if (existingAssignment.recordset?.length === 0) {
 			await DB.exec('AssignProjectToUser', {
 				UserProjectID,
 				UserID,
@@ -116,8 +122,6 @@ const deleteProject = async (req, res) => {
 		}
 	} catch (error) {
 		console.error('An error occurred:', error.message);
-		console.log('end to delete');
-
 		return res.status(500).json({ error: 'Oops, project deletion failed' });
 	}
 };
@@ -127,6 +131,9 @@ const getUnassignedUsers = async (req, res) => {
 		const unassignedUsers = await DB.query(
 			`SELECT UserID, Username, Email FROM Users WHERE IsAssigned = 0`,
 		);
+		if (unassignedUsers.recordset.length === 0) {
+			return res.status(404).json({ message: 'No unassigned users found' });
+		}
 		res.status(200).json(unassignedUsers.recordset);
 	} catch (error) {
 		console.error('Error fetching unassigned users:', error.message);

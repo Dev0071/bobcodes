@@ -16,6 +16,6 @@ adminRoute.get('/projects', getAllProjects);
 adminRoute.get('/unassigned', getUnassignedUsers);
 adminRoute.delete('/project/:ProjectName', deleteProject);
 adminRoute.patch('/project/mark-complete/:ProjectID', updateProjectStatus);
-adminRoute.get('/project/:ProjectID', getProjectByID)
+adminRoute.get('/project/:ProjectID', getProjectByID);
 
 module.exports = adminRoute;
