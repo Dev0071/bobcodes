@@ -3,11 +3,11 @@ const {
 	registerUser,
 	getAllUsers,
 	loginUser,
-	updateProjectStatus,
 	getASingleUser,
 	getUsersUnderProject,
 	getUseProject,
 } = require('../../controllers/userController');
+const updateProjectStatus = require('../../EmailServices/projectCompletedEmail.js');
 const { validateUserRegistration, validateUserLogin } = require('../../Middleware/verifyInput');
 
 const usersRouter = Router();

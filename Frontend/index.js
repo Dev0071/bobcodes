@@ -47,8 +47,13 @@ if (user && !user.isAdministrator) {
 		try {
 			console.log('called');
 			const response = await fetch(`http://localhost:9500/users/projects/${userId}`);
+
 			const userProjects = await response.json();
+			console.log(userProjects[0]);
 			const { ProjectID, ProjectName, ProjectDescription, ProjectEndDate } = userProjects[0];
+			const projectStat = await fetch(`http://localhost:9500/api/admin/project/${ProjectID}`);
+			const projectStatus = await projectStat.json();
+			const iscomplete = projectStatus.IsComplete;
 
 			const newdate = new Date();
 			const duedate = new Date(ProjectEndDate);
@@ -60,17 +65,30 @@ if (user && !user.isAdministrator) {
                     <p>due in ${days} days</p>
 
                     <div>
-                        <button class='complete' id='${ProjectID}'>mark complete</button>
+                        <button class='complete' id='${ProjectID}'>${
+				iscomplete ? 'project completed' : 'mark complete'
+			}</button>
                     </div>
                 </div>`;
 			const button = document.querySelector('.complete');
+			const reminders = document.querySelector('#reminder');
+			reminders.innerHTML = `<div id="Onereminder"> <p>Your project  ${ProjectName} is due in ${days}days.</p></div>`;
+
 			button.addEventListener('click', async () => {
 				const ProjectID = button.id;
 				await markProjectComplete(ProjectID);
-				button.textContent = `project Completed`;
+				if (iscomplete) {
+					button.classList.add('disabled');
+					button.disabled = true;
+					reminders.innerHTML = ` <p
+                        style="background-color: blanchedalmond; max-width: 530px; padding: 0.5rem; border-radius: 8px;">
+                        ops!! you'll get a
+                        notification email
+                        once assigned to
+                        a
+                        project.</p>`;
+				}
 			});
-			const reminders = document.querySelector('#reminder');
-			reminders.innerHTML = `<div id="Onereminder"> <p>Your project  ${ProjectName} is due in ${days}days.</p></div>`;
 		} catch (error) {
 			console.error('Error fetching user projects:', error.message);
 		}
