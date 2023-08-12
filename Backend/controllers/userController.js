@@ -46,9 +46,12 @@ const loginUser = async (req, res) => {
 				Role: user.recordset[0]?.isAdmin === 1 ? 'admin' : 'user',
 			};
 			const token = jwt.sign(payload, process.env.SECRET, { expiresIn: '36000' });
+			// console.log(token);
+			// console.log(payload);
 
 			return res.status(200).json({
 				message: 'Login successful',
+				payload,
 				token,
 			});
 		} else {
@@ -122,36 +125,36 @@ const getUsersUnderProject = async (req, res) => {
 	}
 };
 
-const updateProjectStatus = async (req, res) => {
-	try {
-		const { ProjectID } = req.params;
+// const updateProjectStatus = async (req, res) => {
+// 	try {
+// 		const { ProjectID } = req.params;
 
-		await DB.exec('updateProjectStatusProcedure', { ProjectID });
+// 		await DB.exec('updateProjectStatusProcedure', { ProjectID });
 
-		const project = await DB.exec('getProjectByID', { ProjectID });
+// 		const project = await DB.exec('getProjectByID', { ProjectID });
 
-		if (project.recordset.length === 0) {
-			return res.status(404).json({ error: 'Project not found' });
-		}
+// 		if (project.recordset.length === 0) {
+// 			return res.status(404).json({ error: 'Project not found' });
+// 		}
 
-		const userMessageOptions = {
-			from: 'test@mail.com',
-			to: process.env.ADMIN_EMAIL,
-			subject: `Project Completion`,
-			html: `<p> Hello. This is to notify you I have completed project '${project.recordset[0].Name}'.</p>`,
-		};
+// 		const userMessageOptions = {
+// 			from: 'test@mail.com',
+// 			to: process.env.ADMIN_EMAIL,
+// 			subject: `Project Completion`,
+// 			html: `<p> Hello. This is to notify you I have completed project '${project.recordset[0].Name}'.</p>`,
+// 		};
 
-		await sendMail(userMessageOptions);
+// 		await sendMail(userMessageOptions);
 
-		return res.status(200).json({ message: 'Project marked as complete' });
-	} catch (e) {
-		//await DB.query('ROLLBACK TRANSACTION');
-		console.log(e.message);
-		return res
-			.status(500)
-			.json({ error: 'An error occurred while marking the project as complete' });
-	}
-};
+// 		return res.status(200).json({ message: 'Project marked as complete' });
+// 	} catch (e) {
+// 		//await DB.query('ROLLBACK TRANSACTION');
+// 		console.log(e.message);
+// 		return res
+// 			.status(500)
+// 			.json({ error: 'An error occurred while marking the project as complete' });
+// 	}
+// };
 
 const getASingleUser = async (req, res) => {
 	try {
@@ -189,7 +192,7 @@ module.exports = {
 	getAllUsers,
 	loginUser,
 	getUsersUnderProject,
-	updateProjectStatus,
+	// updateProjectStatus,
 	getASingleUser,
 	getUseProject,
 };
