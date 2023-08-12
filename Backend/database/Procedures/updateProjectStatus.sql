@@ -14,4 +14,8 @@ BEGIN
 END
 
 
+
+
+
+use groupWork;
 SELECT * FROM projects;

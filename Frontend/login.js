@@ -46,6 +46,8 @@ loginForm.addEventListener('submit', async event => {
 				isAdministrator: decodedToken.isAdmin,
 			};
 
+			errorElement.innerText = "Login successful";
+			errorElement.style.color = 'green'
 			// Save the user object in localStorage
 			localStorage.setItem('user', JSON.stringify(user));
 

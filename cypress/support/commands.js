@@ -23,3 +23,31 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('successfulLogin', ()=> {
+    cy.visit('http://127.0.0.1:5501/Frontend/')
+    cy.get('#email').type('kelvinian87@gmail.com')
+    cy.get('#password').type('Garfield')
+    cy.get('#login-button').click()
+})
+
+Cypress.Commands.add('unsuccessfulLoginWithUnregisteredEmail', () => {
+    cy.visit('http://127.0.0.1:5501/Frontend/')
+    cy.get('#email').type('random@mail.com')
+    cy.get('#password').type('Garfield')
+   // cy.get('#login-button').click()
+})
+Cypress.Commands.add('unsuccessfulLoginWithWrongPassword', () => {
+    cy.visit('http://127.0.0.1:5501/Frontend/')
+    cy.get('#email').type('kelvinian87@gmail.com')
+    cy.get('#password').type('Garfieldd')
+    cy.get('#login-button').click()
+})
+
+Cypress.Commands.add('unsuccessfulLoginWithWrongEmailFormat', () => {
+    cy.visit('http://127.0.0.1:5501/Frontend/')
+    cy.get('#email').type('random@mailcom')
+    cy.get('#password').type('Garfield')
+    cy.get('#login-button').click()
+})
+

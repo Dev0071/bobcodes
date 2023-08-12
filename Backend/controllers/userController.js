@@ -90,7 +90,7 @@ const registerUser = async (req, res) => {
 				html: `<p> Hello ${Username}. Your account has been succesfully created. <br> Welcome Aboard. '.</p>`,
 			};
 
-			await sendMail(userMessageOptions);
+		//	await sendMail(userMessageOptions);
 			return res.status(200).json({ message: 'Account successfully registered' });
 		} else {
 			console.log(e.message, 'registration failed');
