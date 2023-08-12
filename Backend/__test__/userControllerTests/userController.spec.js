@@ -4,7 +4,7 @@ const {
     getASingleUser,
     getUseProject,
     loginUser,
-    registerUser
+    registerUser, updateProjectStatus
 } = require("../../controllers/userController");
 jest.mock('../../database/helpers/index.js');
 const bcrypt = require('bcrypt')
@@ -284,7 +284,35 @@ describe('Get projects assigned to user', () => {
 })
 
 describe('update project status', () => {
+    afterEach(() => {
+        jest.restoreAllMocks()
+    })
     it('should mark a project complete and update its status', async () => {
+
+        const mockProject = {
+            recordset: [{
+                ProjectID: 1,
+                ProjectName: "Project Name goes here",
+                ProjectDescription: "Project description goes here"
+            }]
+        }
+        DB.exec.mockResolvedValue(mockProject)
+        const req = {
+            params: {ProjectID: 1},
+        }
+
+        const res = {
+            status: jest.fn().mockReturnThis(),
+            json: jest.fn(),
+        }
+
+
+        await updateProjectStatus(req, res)
+
+    //    expect(DB.exec).toHaveBeenNthCalledWith(1, "updateProjectStatusProcedure", {ProjectID: 1} )
+     //   expect(DB.exec).toHaveBeenNthCalledWith(2, "getProjectByID", {ProjectID: 1})
+        expect(res.status).toHaveBeenCalledWith(200)
+        expect(res.json).toHaveBeenCalledWith({message: 'Project marked as complete'})
 
 
     })
