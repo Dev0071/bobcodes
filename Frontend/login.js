@@ -29,10 +29,10 @@ loginForm.addEventListener('submit', async event => {
 			const userId = decodedToken.UserID;
 			// console.log(userId);
 			// console.log('called');
-			// const project = await fetchUserProjects(userId);
-			// const userDetailsResponse = await fetch(`http://localhost:9500/users/user/${userId}`, {
-			// 	method: 'GET',
-			// });
+			const project = await fetchUserProjects(userId);
+			const userDetailsResponse = await fetch(`http://localhost:9500/users/user/${userId}`, {
+				method: 'GET',
+			});
 
 			if (!userDetailsResponse.ok) {
 				throw new Error('Failed to fetch user details.');
@@ -53,7 +53,9 @@ loginForm.addEventListener('submit', async event => {
 			// Save the user object in localStorage
 			localStorage.setItem('user', JSON.stringify(user));
 
-			window.location.href = 'index.html';
+			setTimeout(() => {
+				window.location.href = 'index.html';
+			}, 1000); 
 			async function fetchUserProjects(userId) {
 				try {
 					// console.log('called');
